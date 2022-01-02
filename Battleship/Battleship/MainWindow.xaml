@@ -23,7 +23,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="50px">
-            <Button x:Name="statisticsButton" Content="Statistics" Click="StatisticsButton_Click" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="16"/>
+            <Button x:Name="scoreboardButton" Content="Scoreboard" Click="ScoreboardButton_Click" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="16"/>
         </StackPanel>
     </Grid>
 </Window>

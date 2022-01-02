@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\Dokumentumok\C#\csharp-2021-torpedo\Battleship\Battleship\App.xaml
-3927847948
+4-35186930
 
-51150264203
+14-50025284
 214278092194
-MainWindow.xaml;PlayerName2Window.xaml;PlayerNameWindow.xaml;
+MainWindow.xaml;PlayerName2Window.xaml;PlayerNameWindow.xaml;ScoreboardWindow.xaml;
 
 False
 

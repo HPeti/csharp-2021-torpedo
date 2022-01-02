@@ -13,6 +13,9 @@
     <Compile Update="PlayerNameWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ScoreboardWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -22,6 +25,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="PlayerNameWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ScoreboardWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -26,9 +26,11 @@ namespace Battleship
             playerName2.Show();
         }
 
-        private void StatisticsButton_Click(object sender, RoutedEventArgs e)
+        private void ScoreboardButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ScoreboardWindow scoreboard = new();
+            Close();
+            scoreboard.Show();
         }
     }
 }

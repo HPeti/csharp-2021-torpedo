@@ -62,3 +62,5 @@ D:\Dokumentumok\C#\csharp-2021-torpedo\Battleship\Battleship\bin\Debug\net5.0-wi
 D:\Dokumentumok\C#\csharp-2021-torpedo\Battleship\Battleship\bin\Debug\net5.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 D:\Dokumentumok\C#\csharp-2021-torpedo\Battleship\Battleship\bin\Debug\net5.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\Dokumentumok\C#\csharp-2021-torpedo\Battleship\Battleship\obj\Debug\net5.0-windows\Battleship.csproj.CopyComplete
+D:\Dokumentumok\C#\csharp-2021-torpedo\Battleship\Battleship\obj\Debug\net5.0-windows\ScoreboardWindow.g.cs
+D:\Dokumentumok\C#\csharp-2021-torpedo\Battleship\Battleship\obj\Debug\net5.0-windows\ScoreboardWindow.baml
