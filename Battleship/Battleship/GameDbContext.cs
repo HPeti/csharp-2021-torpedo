@@ -9,10 +9,18 @@ namespace Battleship
 {
     public class GameDbContext : DbContext
     {
-        public GameDbContext(DbContextOptions options) : base(options)
+        public GameDbContext()
         {
         }
 
-        public DbSet<GameDTO> Games { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Server = (localdb)\mssqllocaldb; Database = ServerDb");
+            }
+        }
+
+        public DbSet<Game> Games { get; set; }
     }
 }

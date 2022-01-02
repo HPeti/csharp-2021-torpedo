@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Battleship
 {
-    public class GameDTO
+    public class Game
     {
         [Key]
         public long Id { get; set; }

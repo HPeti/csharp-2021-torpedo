@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 
 namespace Battleship
 {
@@ -7,9 +9,19 @@ namespace Battleship
     /// </summary>
     public partial class ScoreboardWindow : Window
     {
+        public List<Game> MyGames { get; set; }
+
         public ScoreboardWindow()
         {
             InitializeComponent();
+
+            using (GameDbContext _context = new())
+            {
+               MyGames = _context.Games.ToList();
+            }
+
+            GamesList.ItemsSource = MyGames;
+
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
