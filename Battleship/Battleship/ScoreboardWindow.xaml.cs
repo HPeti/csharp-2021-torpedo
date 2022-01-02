@@ -9,7 +9,7 @@ namespace Battleship
     /// </summary>
     public partial class ScoreboardWindow : Window
     {
-        public List<Game> MyGames { get; set; }
+        public List<Game> AllGames { get; set; }
 
         public ScoreboardWindow()
         {
@@ -17,11 +17,10 @@ namespace Battleship
 
             using (GameDbContext _context = new())
             {
-               MyGames = _context.Games.ToList();
+               AllGames = _context.Games.ToList();
             }
 
-            GamesList.ItemsSource = MyGames;
-
+            GamesList.ItemsSource = AllGames;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
