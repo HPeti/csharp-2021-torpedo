@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="ScoreboardWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/resources/battleship.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
         
+        <Label Content="Scoreboard" FontFamily="SimHei" FontWeight="Bold" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30" Margin="10">
+            <Label.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="7" Opacity=".5"/>
+            </Label.BitmapEffect>
+        </Label>
+
+        <Grid>
+            <DataGrid Name="GamesList" Margin="20, 70, 20, 80"/>
+        </Grid>
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10px">
+            <Button x:Name="backButton" Content="Back" Click="BackButton_Click" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="16" Margin="10"/>
+        </StackPanel>
     </Grid>
 </Window>
