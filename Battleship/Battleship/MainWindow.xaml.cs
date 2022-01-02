@@ -25,17 +25,21 @@ namespace Battleship
             InitializeComponent();
         }
 
-        private void VsAI_Button_Click(object sender, RoutedEventArgs e)
+        private void VsAIButton_Click(object sender, RoutedEventArgs e)
         {
-
+            PlayerNameWindow playerName = new();
+            Close();
+            playerName.Show();
         }
 
-        private void VsPlayer_Button_Click(object sender, RoutedEventArgs e)
+        private void VsPlayerButton_Click(object sender, RoutedEventArgs e)
         {
-
+            PlayerName2Window playerName2 = new();
+            Close();
+            playerName2.Show();
         }
 
-        private void Statistics_Button_Click(object sender, RoutedEventArgs e)
+        private void StatisticsButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

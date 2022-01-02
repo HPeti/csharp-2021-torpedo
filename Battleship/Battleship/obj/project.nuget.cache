@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "p2oxX6OPWNDr6kXkae7L6xOdT21+1dDalJDzbcg1rqjIpHtpJolYHuVylkOt23MY6yHWjykQCkAhUtfs5W291Q==",
+  "dgSpecHash": "IIMx9k0O9J8Tr6Kfmv9C+9SJ+SnLIx0kGzzrJSF2Z9cVb9w0PuKsmJFbtnIJ+OkozyCvXVnnAkuObtxCfZINTA==",
   "success": true,
-  "projectFilePath": "D:\\Dokumentumok\\C#\\Battleship\\Battleship\\Battleship.csproj",
+  "projectFilePath": "D:\\Dokumentumok\\C#\\csharp-2021-torpedo\\Battleship\\Battleship\\Battleship.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

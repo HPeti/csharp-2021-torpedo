@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Dokumentumok\\C#\\Battleship\\Battleship\\Battleship.csproj",
+      "projectUniqueName": "D:\\Dokumentumok\\C#\\csharp-2021-torpedo\\Battleship\\Battleship\\Battleship.csproj",
       "projectName": "Battleship",
-      "projectPath": "D:\\Dokumentumok\\C#\\Battleship\\Battleship\\Battleship.csproj",
+      "projectPath": "D:\\Dokumentumok\\C#\\csharp-2021-torpedo\\Battleship\\Battleship\\Battleship.csproj",
       "packagesPath": "C:\\Users\\danis\\.nuget\\packages\\",
-      "outputPath": "D:\\Dokumentumok\\C#\\Battleship\\Battleship\\obj\\",
+      "outputPath": "D:\\Dokumentumok\\C#\\csharp-2021-torpedo\\Battleship\\Battleship\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

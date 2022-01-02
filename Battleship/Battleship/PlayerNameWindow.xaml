@@ -1,4 +1,4 @@
-﻿<Window x:Class="Battleship.MainWindow"
+﻿<Window x:Class="Battleship.PlayerNameWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -17,13 +17,14 @@
             </Label.BitmapEffect>
         </Label>
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button x:Name="vsAIButton" Content="1 Player" Click="VsAIButton_Click" Width="150px" Height="50px" Margin="5" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="16"/>
-            <Button x:Name="vsPlayerButton" Content="2 Player" Click="VsPlayerButton_Click" Width="150px" Height="50px" Margin="5" Background="#FF38BBE2" FontSize="16" FontFamily="Segoe UI Semibold"/>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Player's Name" FontFamily="SimHei" FontWeight="Bold" FontSize="12" Foreground="White" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="playerName" Width="120px" Height="30px" BorderBrush="Black" TextAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="13"/>
         </StackPanel>
-
+        
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="50px">
-            <Button x:Name="statisticsButton" Content="Statistics" Click="StatisticsButton_Click" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="16"/>
+            <Button x:Name="startButton" Content="Start" Click="StartButton_Click" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="16"/>
+            <Button x:Name="backButton" Content="Back" Click="BackButton_Click" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="16" Margin="10"/>
         </StackPanel>
     </Grid>
 </Window>

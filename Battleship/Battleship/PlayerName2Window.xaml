@@ -1,0 +1,32 @@
+﻿<Window x:Class="Battleship.PlayerName2Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Battleship"
+        mc:Ignorable="d"
+        Title="PlayerName2Window" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/resources/battleship.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <Label Content="Battleship" FontFamily="SimHei" FontWeight="Bold" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30">
+            <Label.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="7" Opacity=".5"/>
+            </Label.BitmapEffect>
+        </Label>
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Player1 Name" FontFamily="SimHei" FontWeight="Bold" FontSize="12" Foreground="White" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="player1Name" Width="120px" Height="30px" BorderBrush="Black" TextAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="13" Margin="5"/>
+            <Label Content="Player2 Name" FontFamily="SimHei" FontWeight="Bold" FontSize="12" Foreground="White" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="player2Name" Width="120px" Height="30px" BorderBrush="Black" TextAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="13" Margin="5"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="50px">
+            <Button x:Name="startButton" Content="Start" Click="StartButton_Click" Width="150px" Height="40px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="16"/>
+            <Button x:Name="backButton" Content="Back" Click="BackButton_Click" Width="150px" Height="40px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="16" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
