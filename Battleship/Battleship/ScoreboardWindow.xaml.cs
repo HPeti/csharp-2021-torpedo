@@ -9,7 +9,6 @@ namespace Battleship
     /// </summary>
     public partial class ScoreboardWindow : Window
     {
-        private readonly DbHelper helper = new();
         private List<Game> AllGames { get; set; }
 
 
@@ -17,7 +16,7 @@ namespace Battleship
         {
             InitializeComponent();
 
-            //helper.InsertToDb("player1", "player2", 10, 1, 3, "player1");
+            //DbHelper.InsertToDb("player1", "player2", 10, 1, 3, "player1");
 
             using (GameDbContext _context = new())
             {
@@ -36,7 +35,7 @@ namespace Battleship
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            helper.ClearDb();
+            DbHelper.ClearDb();
             
             using GameDbContext database = new();
             AllGames = database.Games.ToList();
