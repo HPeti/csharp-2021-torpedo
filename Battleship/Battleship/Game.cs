@@ -13,5 +13,7 @@ namespace Battleship
         public int Rounds { get; set; }
         public int Player1Hits { get; set; }
         public int Player2Hits { get; set; }
+        [Required]
+        public string Winner { get; set; }
     }
 }
