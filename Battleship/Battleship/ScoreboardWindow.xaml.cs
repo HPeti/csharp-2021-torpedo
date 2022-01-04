@@ -16,7 +16,7 @@ namespace Battleship
         {
             InitializeComponent();
 
-            //DbHelper.InsertToDb("player1", "player2", 10, 1, 3, "player1");
+            DbHelper.InsertToDb("player1", "player2", 10, 1, 3, "player1");
 
             using (GameDbContext _context = new())
             {

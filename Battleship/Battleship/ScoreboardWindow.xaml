@@ -6,6 +6,24 @@
         xmlns:local="clr-namespace:Battleship"
         mc:Ignorable="d"
         Title="ScoreboardWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="CadetBlue"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontFamily" Value="SimHei"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="VerticalScrollBarVisibility" Value="Hidden"/>
+            <Setter Property="MinRowHeight" Value="25"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="RowBackground" Value="Gray"/>
+            <Setter Property="AlternatingRowBackground" Value="#FF726D6B"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/resources/battleship.jpg" Stretch="UniformToFill"/>
@@ -18,7 +36,7 @@
         </Label>
 
         <Grid>
-            <DataGrid Name="GamesList" Margin="20, 70, 20, 80"/>
+            <DataGrid Name="GamesList" Margin="20, 70, 20, 80" ColumnWidth="*" IsReadOnly="True"/>
         </Grid>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10px">
