@@ -21,8 +21,9 @@
             <DataGrid Name="GamesList" Margin="20, 70, 20, 80"/>
         </Grid>
 
-        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10px">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10px">
             <Button x:Name="backButton" Content="Back" Click="BackButton_Click" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="16" Margin="10"/>
+            <Button x:Name="clearButton" Content="Clear" Click="ClearButton_Click" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="16" Margin="10"/>
         </StackPanel>
     </Grid>
 </Window>

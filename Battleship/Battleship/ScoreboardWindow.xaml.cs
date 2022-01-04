@@ -9,11 +9,14 @@ namespace Battleship
     /// </summary>
     public partial class ScoreboardWindow : Window
     {
-        public List<Game> AllGames { get; set; }
+        private List<Game> AllGames { get; set; }
+
 
         public ScoreboardWindow()
         {
             InitializeComponent();
+
+            //DbHelper.InsertToDb("player1", "player2", 10, 1, 3, "player1");
 
             using (GameDbContext _context = new())
             {
@@ -30,5 +33,13 @@ namespace Battleship
             main.Show();
         }
 
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            DbHelper.ClearDb();
+
+            using GameDbContext database = new();
+            AllGames = database.Games.ToList();
+            GamesList.ItemsSource = AllGames;
+        }
     }
 }
