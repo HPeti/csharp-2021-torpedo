@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Dokumentumok\C#\csharp-2021-torpedo\Battleship\Battleship\obj\Debug\net5.0-windows\
+C:\Users\kapla\csharp-2021-torpedo\Battleship\Battleship\obj\Debug\net5.0-windows\
 Battleship
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-D:\Dokumentumok\C#\csharp-2021-torpedo\Battleship\Battleship\App.xaml
-4-35186930
+C:\Users\kapla\csharp-2021-torpedo\Battleship\Battleship\App.xaml
+5-1045733079
 
-18-1438749322
-214278092194
-MainWindow.xaml;PlayerName2Window.xaml;PlayerNameWindow.xaml;ScoreboardWindow.xaml;
+19-409188101
+214-2037267917
+GameWindow.xaml;MainWindow.xaml;PlayerName2Window.xaml;PlayerNameWindow.xaml;ScoreboardWindow.xaml;
 
 False
 
