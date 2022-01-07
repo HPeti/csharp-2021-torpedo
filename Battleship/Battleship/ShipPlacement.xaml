@@ -1,0 +1,71 @@
+﻿<Window x:Class="Battleship.ShipPlacement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Battleship"
+        mc:Ignorable="d"
+        Title="ShipPlacement" Height="700" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="welcomeLabel" Content="Ship placement" Grid.Row="0" Grid.ColumnSpan="2" FontFamily="SimHei" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button x:Name="destroyerBtn" Content="Destroyer" Click="shipBtn" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" FontWeight="Bold" FontSize="25px"  Background="Transparent" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
+            <Button x:Name="submarineBtn" Content="Submarine" Click="shipBtn" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" FontWeight="Bold" FontSize="25px" Background="Transparent" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
+            <Button x:Name="carrierBtn" Content="Carrier" Click="shipBtn" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" FontWeight="Bold" FontSize="25px" Background="Transparent" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
+            <Button x:Name="battleshipBtn" Content="Battleship" Click="shipBtn" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" FontWeight="Bold" FontSize="25px" Background="Transparent" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
+            <Button x:Name="cruiserBtn" Content="Cruiser" Click="shipBtn" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" FontWeight="Bold" FontSize="25px" Background="Transparent" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
+            <Button x:Name="Rotate" Content="Rotate" Click="rotateBtn_Click" Background="#FF5284C0" FontFamily="Segoe UI Semibold" FontWeight="Bold" FontSize="30" Foreground="White" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Text=" A   B   C   D   E   F   G   H   I   J" FontFamily="SimHei" FontWeight="Bold" FontSize="28px" Margin="66,53,67,487" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="0 1 2 3 4 5 6 7 8 9" FontFamily="SimHei" FontWeight="Bold" FontSize="33.5px" Margin="39,85,467,85" TextWrapping="Wrap" />
+
+
+        <Grid Height="400" Width="400" Grid.Row="1" Grid.Column="1" Name="playfield" Margin="20,0,20,0" Background="Transparent" PreviewMouseMove="onGridMouseOver" PreviewMouseLeftButtonDown="onGridMouseClick" ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+        </Grid>
+
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+            <Button x:Name="RandomBtn" Click="randomBtn_Click" Content="Random" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"/>
+            <Button x:Name="ResetBtn" Click="resetBtn_Click" Content="Reset" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"/>
+            <Button x:Name="SubmitBtn" Click="submitBtn_Click" Content="Submit" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>
