@@ -5,12 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Battleship"
         mc:Ignorable="d"
+        ResizeMode="CanMinimize"
         Title="ShipPlacement" Height="700" Width="800">
+
+    <Window.Background>
+        <ImageBrush ImageSource="/resources/battleship.jpg" Stretch="UniformToFill" Opacity="0.5"/>
+    </Window.Background>
+    
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.7"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="10*"/>
-            <RowDefinition/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -29,11 +38,11 @@
             <Button x:Name="Rotate" Content="Rotate" Click="rotateBtn_Click" Background="#FF5284C0" FontFamily="Segoe UI Semibold" FontWeight="Bold" FontSize="30" Foreground="White" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
         </StackPanel>
 
-        <TextBlock Grid.Row="1" Grid.Column="1" Text=" A   B   C   D   E   F   G   H   I   J" FontFamily="SimHei" FontWeight="Bold" FontSize="28px" Margin="66,53,67,487" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="0 1 2 3 4 5 6 7 8 9" FontFamily="SimHei" FontWeight="Bold" FontSize="33.5px" Margin="39,85,467,85" TextWrapping="Wrap" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text=" A   B   C   D   E   F   G   H   I   J" FontFamily="SimHei" FontWeight="Bold" FontSize="28px" Margin="0 0 0 430" TextWrapping="Wrap" Width="400" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="0 1 2 3 4 5 6 7 8 9" FontFamily="SimHei" FontWeight="Bold" FontSize="33.5px" Margin="0 0 430 0" TextWrapping="Wrap" Width="30" Height="400" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
 
-        <Grid Height="400" Width="400" Grid.Row="1" Grid.Column="1" Name="playfield" Margin="20,0,20,0" Background="Transparent" PreviewMouseMove="onGridMouseOver" PreviewMouseLeftButtonDown="onGridMouseClick" ShowGridLines="True">
+        <Grid Height="400" Width="400" Grid.Row="1" Grid.Column="1" Name="playfield" Margin="20,0,20,0" Background="Transparent" PreviewMouseMove="onGridMouseOver" PreviewMouseLeftButtonDown="onGridMouseClick" ShowGridLines="True" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -62,6 +71,7 @@
         </Grid>
 
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+            <Button x:Name="BackBtn" Click="backBtn_Click" Content="Back" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"></Button>
             <Button x:Name="RandomBtn" Click="randomBtn_Click" Content="Random" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"/>
             <Button x:Name="ResetBtn" Click="resetBtn_Click" Content="Reset" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"/>
             <Button x:Name="SubmitBtn" Click="submitBtn_Click" Content="Submit" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"/>
