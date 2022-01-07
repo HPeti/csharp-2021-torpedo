@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Battleship
 {
@@ -19,44 +8,79 @@ namespace Battleship
     /// </summary>
     public partial class ShipPlacement : Window
     {
-        public ShipPlacement()
+        private string player1Name;
+        private string player2Name;
+        private bool versusComputer;
+
+        /// <summary>
+        /// This constructor is used when only one player plays the game versus the computer.
+        /// </summary>
+        /// <param name="player1Name">Player's name</param>
+        public ShipPlacement(string player1Name)
         {
             InitializeComponent();
+
+            versusComputer = true;
+            this.player1Name = player1Name;
+
+            this.Title = player1Name + "'s ship placement";
+            welcomeLabel.Content = player1Name + "'s ship placement";
         }
 
-        private void shipBtn(object sender, RoutedEventArgs e) //select ship type
+        /// <summary>
+        /// This constructor is used when two players plays the game.
+        /// Firstly the player1's ships are set up.
+        /// </summary>
+        /// <param name="player1Name">First player's name</param>
+        /// <param name="player2Name">Second player's name</param>
+        public ShipPlacement(string player1Name, string player2Name)
         {
+            InitializeComponent();
 
+            versusComputer = false;
+            this.player1Name = player1Name;
+            this.player2Name = player2Name;
+
+            this.Title = player1Name + "'s ship placement";
+            welcomeLabel.Content = player1Name + "'s ship placement";
         }
 
-        private void resetBtn_Click(object sender, RoutedEventArgs e)
+        private void shipBtn(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void rotateBtn_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void randomBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void submitBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void onGridMouseClick(object sender, MouseButtonEventArgs e)
         {
-
         }
 
         private void onGridMouseOver(object sender, MouseEventArgs e)
         {
+        }
 
+        /// <summary>
+        /// This method navigates back to MainWindow when the user presses the backBtn.
+        /// </summary>
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new();
+            Close();
+            mainWindow.Show();
+        }
+
+        private void randomBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void resetBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void submitBtn_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
