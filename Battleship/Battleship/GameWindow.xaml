@@ -209,8 +209,8 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Content="Surrend"  Width="150px" Height="50px" Margin="5" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" Click="surrendBtn_Click" x:Name="surrendBtn"/>
-                        <Button Grid.Column="1" Content="Stats" Width="150px" Height="50px" Margin="5" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30"  Click="stats_Click"/>
+                        <Button Grid.Column="0" Content="Surrend"  Width="150px" Height="50px" Margin="5" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" Click="SurrendBtn_Click" x:Name="surrendBtn"/>
+                        <Button Grid.Column="1" Content="Stats" Width="150px" Height="50px" Margin="5" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30"  Click="Stats_Click"/>
 
                     </Grid>
                 </Grid>

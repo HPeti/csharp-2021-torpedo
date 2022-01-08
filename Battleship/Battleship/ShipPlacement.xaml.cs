@@ -45,19 +45,19 @@ namespace Battleship
             welcomeLabel.Content = player1Name + "'s ship placement";
         }
 
-        private void shipBtn(object sender, RoutedEventArgs e)
+        private void ShipBtn(object sender, RoutedEventArgs e)
         {
         }
 
-        private void rotateBtn_Click(object sender, RoutedEventArgs e)
+        private void RotateBtn_Click(object sender, RoutedEventArgs e)
         {
         }
 
-        private void onGridMouseClick(object sender, MouseButtonEventArgs e)
+        private void OnGridMouseClick(object sender, MouseButtonEventArgs e)
         {
         }
 
-        private void onGridMouseOver(object sender, MouseEventArgs e)
+        private void OnGridMouseOver(object sender, MouseEventArgs e)
         {
         }
 
@@ -71,15 +71,15 @@ namespace Battleship
             mainWindow.Show();
         }
 
-        private void randomBtn_Click(object sender, RoutedEventArgs e)
+        private void RandomBtn_Click(object sender, RoutedEventArgs e)
         {
         }
 
-        private void resetBtn_Click(object sender, RoutedEventArgs e)
+        private void ResetBtn_Click(object sender, RoutedEventArgs e)
         {
         }
 
-        private void submitBtn_Click(object sender, RoutedEventArgs e)
+        private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
         }
     }

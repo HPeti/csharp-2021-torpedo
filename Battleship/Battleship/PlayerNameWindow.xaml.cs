@@ -22,6 +22,12 @@ namespace Battleship
                 _ = MessageBox.Show("Player's name is not valid!");
                 playerName.Text = "";
             }
+            else
+            {
+                ShipPlacement placement = new(playerName.Text);
+                Close();
+                placement.Show();
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

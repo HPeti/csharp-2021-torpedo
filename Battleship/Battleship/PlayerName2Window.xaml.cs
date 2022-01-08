@@ -24,6 +24,12 @@ namespace Battleship
                 player1Name.Text = "";
                 player2Name.Text = "";
             }
+            else
+            {
+                ShipPlacement shipPlacement = new(player1Name.Text, player2Name.Text);
+                Close();
+                shipPlacement.Show();
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
