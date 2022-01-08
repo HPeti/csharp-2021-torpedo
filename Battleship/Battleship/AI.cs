@@ -55,12 +55,14 @@ namespace Battleship
         /// <summary>
         /// Determines whether the cell (given by the coordinates) is outside of the border of the player's table.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">X coordinate</param>
+        /// <param name="y">Y coordinate</param>
         /// <returns>Returns true, if the cell is outside of the border of the player's table..</returns>
         public static bool DetectBorder(int x, int y)
         {
             return x is < 0 or > 9 || y is < 0 or > 9;
         }
+
+
     }
 }
