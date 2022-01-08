@@ -24,9 +24,9 @@ namespace Battleship
             }
             else
             {
-                ShipPlacement placement = new(playerName.Text);
+                ShipPlacement shipPlacement = new(playerName.Text);
                 Close();
-                placement.Show();
+                shipPlacement.Show();
             }
         }
 

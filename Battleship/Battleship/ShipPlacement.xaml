@@ -71,7 +71,7 @@
         </Grid>
 
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
-            <Button x:Name="BackBtn" Click="backBtn_Click" Content="Back" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"></Button>
+            <Button x:Name="BackBtn" Click="BackBtn_Click" Content="Back" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"></Button>
             <Button x:Name="RandomBtn" Click="RandomBtn_Click" Content="Random" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"/>
             <Button x:Name="ResetBtn" Click="ResetBtn_Click" Content="Reset" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"/>
             <Button x:Name="SubmitBtn" Click="SubmitBtn_Click" Content="Submit" Width="150px" Height="50px" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Margin="10 0 10 0"/>

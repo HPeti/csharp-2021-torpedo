@@ -2,6 +2,9 @@
 
 namespace Battleship
 {
+    /// <summary>
+    /// A class used for Database context.
+    /// </summary>
     public class GameDbContext : DbContext
     {
         public GameDbContext()

@@ -2,6 +2,9 @@
 
 namespace Battleship
 {
+    /// <summary>
+    /// A class represents a Battleship game. Used for creating a Database schema. 
+    /// </summary>
     public class Game
     {
         [Key]

@@ -64,7 +64,7 @@ namespace Battleship
         /// <summary>
         /// This method navigates back to MainWindow when the user presses the backBtn.
         /// </summary>
-        private void backBtn_Click(object sender, RoutedEventArgs e)
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new();
             Close();
