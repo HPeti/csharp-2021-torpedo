@@ -340,7 +340,117 @@ namespace Battleship
 
         private void RandomBtn_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: random generation of a playfield will be implemented here...
+            playfield.Children.Clear();
+
+            battleshipPlayfield = new char[ROW_NUM, COL_NUM];
+
+            carrierBtn.IsEnabled = false;
+            battleshipBtn.IsEnabled = false;
+            cruiserBtn.IsEnabled = false;
+            submarineBtn.IsEnabled = false;
+            destroyerBtn.IsEnabled = false;
+
+            Random rnd = new();
+
+            int randomOrient;
+
+            for (int i = 5; i > 0; i--)
+            {
+                bool empty = false;
+                int randomPosX;
+                int randomPosY;
+                randomOrient = rnd.Next(0, 2);
+                switch (randomOrient)
+                {
+                    case 0:
+                        {
+                            //horizontal generating
+                            randomPosX = rnd.Next(0, 10 - i + 1);
+                            randomPosY = rnd.Next(0, 10);
+
+                            while (empty == false)
+                            {
+                                if ((randomPosX != 0 && char.IsDigit(battleshipPlayfield[randomPosY, randomPosX - 1])) || ((randomPosX + i - 1) != 9 && char.IsDigit(battleshipPlayfield[randomPosY, randomPosX + i])))
+                                {
+                                    randomPosX = rnd.Next(0, 10 - i + 1);
+                                    randomPosY = rnd.Next(0, 10);
+                                }
+                                else
+                                {
+                                    for (int k = 0; k < i; k++)
+                                    {
+                                        if (char.IsDigit(battleshipPlayfield[randomPosY, randomPosX + k]) || (randomPosY != 0 && char.IsDigit(battleshipPlayfield[randomPosY - 1, randomPosX + k])) || (randomPosY != 9 && char.IsDigit(battleshipPlayfield[randomPosY + 1, randomPosX + k])))
+                                        {
+                                            randomPosX = rnd.Next(0, 10 - i + 1);
+                                            randomPosY = rnd.Next(0, 10);
+                                            break;
+                                        }
+                                        else if (k == (i - 1))
+                                        {
+                                            empty = true;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int col = 0; col < i; col++)
+                            {
+                                Rectangle ship = ShipSettings(i);
+
+                                Grid.SetRow(ship, randomPosY);
+                                Grid.SetColumn(ship, col + randomPosX);
+
+                                battleshipPlayfield[randomPosY, randomPosX + col] = Convert.ToChar(i.ToString());
+                                playfield.Children.Add(ship);
+                            }
+                            break;
+                        }
+                    case 1:
+                        {
+                            //vertical generating
+                            randomPosY = rnd.Next(0, 10 - i + 1);
+                            randomPosX = rnd.Next(0, 10);
+
+                            while (empty == false)
+                            {
+                                if ((randomPosY != 0 && char.IsDigit(battleshipPlayfield[randomPosY - 1, randomPosX])) || ((randomPosY + i - 1) != 9 && char.IsDigit(battleshipPlayfield[randomPosY + i, randomPosX])))
+                                {
+                                    randomPosY = rnd.Next(0, 10 - i + 1);
+                                    randomPosX = rnd.Next(0, 10);
+                                }
+                                else
+                                {
+                                    for (int k = 0; k < i; k++)
+                                    {
+                                        if (char.IsDigit(battleshipPlayfield[randomPosY + k, randomPosX]) || (randomPosX != 0 && char.IsDigit(battleshipPlayfield[randomPosY + k, randomPosX - 1])) || (randomPosX != 9 && char.IsDigit(battleshipPlayfield[randomPosY + k, randomPosX + 1])))
+                                        {
+                                            randomPosY = rnd.Next(0, 10 - i + 1);
+                                            randomPosX = rnd.Next(0, 10);
+                                            break;
+                                        }
+                                        else if (k == (i - 1))
+                                        {
+                                            empty = true;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int row = 0; row < i; row++)
+                            {
+                                Rectangle ship = ShipSettings(i);
+
+                                Grid.SetRow(ship, row + randomPosY);
+                                Grid.SetColumn(ship, randomPosX);
+
+                                battleshipPlayfield[randomPosY + row, randomPosX] = Convert.ToChar(i.ToString());
+                                playfield.Children.Add(ship);
+                            }
+
+                            break;
+                        }
+                }
+            }
         }
 
         private Rectangle ShipSettings(int shipLength)
