@@ -462,8 +462,8 @@ namespace Battleship
                 else if (vsComputer)
                 {
                     //player vs computer game start
-                    GameWindow gameWindow = new(player1Name);
-                    this.Close();
+                    GameWindow gameWindow = new(player1Name, playfield, battleshipPlayfield);
+                    Close();
                     gameWindow.Show();
                 }
                 else if (!vsComputer)

@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:Battleship"
         mc:Ignorable="d"
         Title="GameWindow" Height="1000" Width="1800">
+
+    <Window.Background>
+        <ImageBrush ImageSource="/resources/battleship.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
+
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.7"/>
+        </Grid.Background>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
