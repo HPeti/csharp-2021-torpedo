@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Battleship
 {
@@ -21,6 +23,8 @@ namespace Battleship
 
         Random rnd = new();
         private bool shipVisibility;
+        private int calculatedCell = -1;
+        private bool shadowExists = false;
 
         public GameWindow(string player1, Grid playfield, char[,] playerTable)
         {
@@ -46,8 +50,54 @@ namespace Battleship
             }
         }
 
+        private Rectangle CreateShadow()
+        {
+            Rectangle shadow = new Rectangle
+            {
+                Fill = Brushes.LightGray
+            };
+            double X = rightTable.Height / SharedUtility.COLUMNS;
+            double Y = rightTable.Width / SharedUtility.ROWS;
+
+            shadow.Height = X;
+            shadow.Width = Y;
+
+            return shadow;
+        }
+
+        private void DeleteShadow()
+        {
+            if (shadowExists)
+            {
+                int lastItem = rightTable.Children.Count - 1;
+                rightTable.Children.RemoveAt(lastItem);
+            }
+        }
+
+        private void OnGridMouseOver(object sender, MouseEventArgs e)
+        {
+            int cell = SharedUtility.CalculateCell(rightTable);
+
+            if (calculatedCell != cell)
+            {
+                calculatedCell = cell;
+
+                DeleteShadow();
+
+                Rectangle shadow = CreateShadow();
+
+                Grid.SetRow(shadow, cell / SharedUtility.ROWS);
+                Grid.SetColumn(shadow, cell % SharedUtility.COLUMNS);
+
+                rightTable.Children.Add(shadow);
+                shadowExists = true;
+            }
+        }
+
         private void SurrendButton_Click(object sender, RoutedEventArgs e)
         {
+            DbHelper.InsertToDb(_player1Name, _player2Name, _rounds, _player1Hits, _player2Hits, _player2Name);
+
             MainWindow main = new();
             Close();
             main.Show();
@@ -61,16 +111,14 @@ namespace Battleship
 
                 for (int i = 0; i < 15; i++)
                 {
-                    if (shipVisibility)
-                    {
-                        rightTable.Children[i].Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        rightTable.Children[i].Visibility = Visibility.Hidden;
-                    }
+                    rightTable.Children[i].Visibility = shipVisibility ? Visibility.Visible : Visibility.Hidden;
                 }
             }
+        }
+
+        private void OnGridMouseClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

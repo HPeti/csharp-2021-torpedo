@@ -67,7 +67,7 @@
 
             <TextBlock Grid.Row="1" Grid.Column="1" Width="30px" Text="0 1 2 3 4 5 6 7 8 9" FontFamily="SimHei" FontWeight="Bold" FontSize="34px" Margin="0,105,440,0" TextWrapping="Wrap" />
 
-            <Grid Height="400" Width="400" Name="rightTable" Grid.Row="1" Grid.Column="1" Background="Transparent" Margin="20,0,20,0" ShowGridLines="True">
+            <Grid Height="400" Width="400" Name="rightTable" Grid.Row="1" Grid.Column="1" Background="Transparent" Margin="20,0,20,0" ShowGridLines="True" PreviewMouseMove="OnGridMouseOver" PreviewMouseLeftButtonDown="OnGridMouseClick">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>

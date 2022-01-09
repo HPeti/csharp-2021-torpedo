@@ -10,7 +10,7 @@ namespace Battleship
     /// <summary>
     /// A class which contains common methods for a game.
     /// </summary>
-    public static class Rules
+    public static class SharedUtility
     {
 
         private static Random rnd = new ();
