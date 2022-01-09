@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Battleship
@@ -34,7 +27,7 @@ namespace Battleship
         private string player2Name;
 
         PvPGameWindow player2Window;
-        Random rnd = new Random();
+        Random rnd = new();
 
         public delegate string Hit(int cell); 
         public event Hit OnHit;
@@ -84,6 +77,7 @@ namespace Battleship
             PlayerShipsLoad(player2PlayfieldGrid);
         }
 
+        //todo
         private string WhichPlayerStart(string player1Name, string player2Name)
         {
             if (rnd.Next(0, 2) == 0)
@@ -110,6 +104,7 @@ namespace Battleship
             player2Window.playerComingLabel.Content = playerStart + " is coming";
         }
 
+        //todo
         private void PlayerShipsLoad(Grid playfield)
         {
             for (int unit = playfield.Children.Count - 1; unit >= 0; unit--)
@@ -120,6 +115,7 @@ namespace Battleship
             }
         }
 
+        //todo
         private void ShipStatHpInit()
         {
             for (int ship = 5; ship > 0; ship--)
@@ -173,14 +169,10 @@ namespace Battleship
 
         private bool IsHitShipUnit(int cell)
         {
-            if (char.IsDigit(myPlayfield[cell / rows, cell % columns]))
-            {
-                return true;
-            }
-
-            return false;
+            return char.IsDigit(myPlayfield[cell / rows, cell % columns]);
         }
 
+        //todo
         private void SetShipUnit(int cell, bool isHit, bool setLeftTable)
         {
             Rectangle ship = ShipUnitSettings(isHit);
@@ -198,6 +190,7 @@ namespace Battleship
             }
         }
 
+        //todo
         private Rectangle ShipUnitSettings(bool isHit)
         {
             Rectangle unit = new Rectangle();
@@ -219,10 +212,13 @@ namespace Battleship
             return unit;
         }
 
+        //todo
         private Rectangle ShipHpSettings(int shipLength)
         {
             Rectangle hpUnit = new Rectangle();
             hpUnit.Fill = Brushes.Green;
+            hpUnit.RadiusX = 5;
+            hpUnit.RadiusY = 5;
             var Y = carrierHpGrid.Width;
             var X = carrierHpGrid.Height / shipLength;
             hpUnit.Width = Y;
@@ -234,7 +230,7 @@ namespace Battleship
         {
             if (e.ClickCount == 1)
             {
-                if (player1Coming && windowPlayer1 || !player1Coming && !windowPlayer1)
+                if ((player1Coming && windowPlayer1) || (!player1Coming && !windowPlayer1))
                 {
                     DeleteShadow();
                     shadowExists = false;
@@ -245,7 +241,7 @@ namespace Battleship
 
                     if (!shooted)
                     {
-                        string shipUnitName = this.OnHit(cell);
+                        string shipUnitName = OnHit(cell);
 
                         if (shipUnitName != "false")
                         {
@@ -270,6 +266,7 @@ namespace Battleship
             }
         }
 
+        //todo
         private void EveryShipDestroyed()
         {
             if (player1HitsLabel.Content.ToString() == "15")
@@ -284,6 +281,7 @@ namespace Battleship
             }
         }
 
+        //todo
         private void RoundsLabelChange()
         {
             changePlayerCounter++;
@@ -294,6 +292,7 @@ namespace Battleship
             }
         }
 
+        //todo
         private void HitsLabelChange()
         {
             if (windowPlayer1 && player1Coming)
@@ -327,16 +326,13 @@ namespace Battleship
             }
         }
 
+        //todo
         private bool IsCellShooted(int cell)
         {
-            if (enemyPlayfield[cell / rows, cell % columns] == 'T' || enemyPlayfield[cell / rows, cell % columns] == 'V')
-            {
-                return true;
-            }
-
-            return false;
+            return enemyPlayfield[cell / rows, cell % columns] is 'H' or 'M';
         }
 
+        //todo
         private void ShipHpDecrement(string shipUnitName)
         {
             switch (shipUnitName)
@@ -355,6 +351,8 @@ namespace Battleship
                     break;
                 case "1":
                     destroyerHpGrid.Children.RemoveAt(destroyerHpGrid.Children.Count - 1);
+                    break;
+                default:
                     break;
             }
         }
@@ -400,6 +398,8 @@ namespace Battleship
             }
         }
 
+
+        //todo
         private int CalculateCell() //which cell the cursor is on
         {
             var point = Mouse.GetPosition(rightTable);
