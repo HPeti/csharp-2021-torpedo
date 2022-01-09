@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Battleship"
         mc:Ignorable="d"
+        KeyDown="ChangeShipVisibility_KeyDown"
         Title="GameWindow" Height="1000" Width="1800">
 
     <Window.Background>
