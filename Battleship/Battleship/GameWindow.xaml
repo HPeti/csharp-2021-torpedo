@@ -13,10 +13,10 @@
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>    
-                <ColumnDefinition Width="1*"></ColumnDefinition>    
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Game Phase"  FontFamily="SimHei" FontWeight="Bold" FontSize="30px" VerticalAlignment="Top" HorizontalAlignment="Center"/>
@@ -96,10 +96,10 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
-                        
+
                     </Grid.RowDefinitions>
 
-                    
+
 
 
                     <Grid Grid.Row="0">
@@ -209,8 +209,7 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Content="Surrend"  Width="150px" Height="50px" Margin="5" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" Click="SurrendBtn_Click" x:Name="surrendBtn"/>
-                        <Button Grid.Column="1" Content="Stats" Width="150px" Height="50px" Margin="5" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30"  Click="Stats_Click"/>
+                        <Button Grid.Column="0" Content="Surrend"  Width="200px" Height="60px" Margin="350,47,350,47" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" Click="SurrendButton_Click" x:Name="surrendButton" Grid.ColumnSpan="2"/>
 
                     </Grid>
                 </Grid>
