@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:Battleship"
         mc:Ignorable="d"
         Title="PvPGameWindow" Height="1000" Width="1800">
+    <Window.Background>
+        <ImageBrush ImageSource="/resources/battleship.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.7"/>
+        </Grid.Background>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
@@ -58,7 +64,7 @@
 
             <TextBlock Grid.Row="1" Grid.Column="1" Width="30px" Text="0 1 2 3 4 5 6 7 8 9" FontFamily="SimHei" FontWeight="Bold" FontSize="34px" Margin="0,105,440,0" TextWrapping="Wrap" />
 
-            <Grid Height="400" Width="400" Name="rightTable" Grid.Row="1" Grid.Column="1" Background="Transparent" Margin="20,0,20,0" ShowGridLines="True">
+            <Grid Height="400" Width="400" Name="rightTable" Grid.Row="1" Grid.Column="1" Background="Transparent" Margin="20,0,20,0" ShowGridLines="True" PreviewMouseMove="OnGridMouseOver" PreviewMouseLeftButtonDown="OnGridMouseClick">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -108,8 +114,8 @@
                             <ColumnDefinition Width="4*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0" Width="250px" Height="50px" BorderThickness="2" BorderBrush="Black">
-                            <Grid ShowGridLines="True" Name="carrierHpGrid">
+                        <Border Grid.Column="0" Width="250px" Height="50px" BorderThickness="2" BorderBrush="Black"  >
+                            <Grid ShowGridLines="True" Name="carrierHpGrid" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
@@ -118,9 +124,10 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                             </Grid>
+                            
                         </Border>
 
-                        <Border Grid.Column="1" Width="200px" Height="50px" BorderThickness="2" BorderBrush="Black">
+                        <Border Grid.Column="1" Width="200px" Height="50px" BorderThickness="2" BorderBrush="Black" >
                             <Grid ShowGridLines="True" Name="battleshipHpGrid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -139,7 +146,7 @@
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0" Width="150px" Height="50px" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Right">
+                        <Border Grid.Column="0" Width="150px" Height="50px" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Right" >
                             <Grid ShowGridLines="True" Name="cruiserHpGrid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -149,7 +156,7 @@
                             </Grid>
                         </Border>
 
-                        <Border Grid.Column="1" Width="100px" Height="50px" BorderThickness="2" BorderBrush="Black">
+                        <Border Grid.Column="1" Width="100px" Height="50px" BorderThickness="2" BorderBrush="Black" >
                             <Grid ShowGridLines="True" Name="submarineHpGrid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -158,7 +165,7 @@
                             </Grid>
                         </Border>
 
-                        <Border Grid.Column="2" Width="50px" Height="50px" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Left">
+                        <Border Grid.Column="2" Width="50px" Height="50px" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Left" >
                             <Grid ShowGridLines="True" Name="destroyerHpGrid" HorizontalAlignment="Left" Width="46">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -187,7 +194,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Content="Rounds:" FontFamily="SimHei" FontWeight="Bold" FontSize="30px" HorizontalContentAlignment="Right"/>
-                        <Label Grid.Column="1" x:Name="roundsLabel" Content="0" FontFamily="SimHei" FontWeight="Bold" FontSize="30px"/>
+                        <Label Grid.Column="1" x:Name="roundsLabel" Content="1" FontFamily="SimHei" FontWeight="Bold" FontSize="30px"/>
                     </Grid>
 
                     <Grid Grid.Row="1">
@@ -205,7 +212,7 @@
                         <Label Grid.Column="3" x:Name="player2HitsLabel" Content="0" FontFamily="SimHei" FontWeight="Bold" FontSize="26px"/>
                     </Grid>
                     <Grid Grid.Row="2">
-                        <Label Grid.Row="6" x:Name="playerComingLabel" Content="Player 1/2 is coming" FontFamily="SimHei" FontWeight="Bold" FontSize="30px" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF38BBE2"/>
+                        <Label Grid.Row="6" x:Name="playerComingLabel" Content="Player 1/2 is coming" FontFamily="SimHei" FontWeight="Bold" FontSize="30px" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="DarkBlue"/>
 
                     </Grid>
                     <Grid  Grid.Row="3">
