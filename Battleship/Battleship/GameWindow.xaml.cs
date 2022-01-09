@@ -19,19 +19,30 @@ namespace Battleship
     /// </summary>
     public partial class GameWindow : Window
     {
-        public GameWindow()
+        private readonly string _player1Name;
+        private readonly string _player2Name;
+        private int _rounds;
+        private int _player1Hits;
+        private int _player2Hits;
+        private string _winner;
+        public GameWindow(string player1)
         {
             InitializeComponent();
+
+            _player1Name = player1;
+            _player2Name = "AI";
+            _rounds = 0;
+            _player1Hits = 0;
+            _player2Hits = 0;
         }
 
-        private void SurrendBtn_Click(object sender, RoutedEventArgs e)
+
+
+        private void SurrendButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Stats_Click(object sender, RoutedEventArgs e)
-        {
-
+            MainWindow main = new();
+            Close();
+            main.Show();
         }
     }
 }
