@@ -24,13 +24,13 @@ namespace Battleship
         private bool shipShadow = false;
         private bool shipHorizontal = false;
 
-        private char[,] battleshipPlayfield = new char[10, 10];
+        private char[,] battleshipPlayfield = new char[ROW_NUM, COL_NUM];
 
         private bool vsComputer;
         private bool player2PlaceShips = false;
         private string player1Name;
         private string player2Name;
-        private char[,] player1BattleshipPlayfield = new char[10, 10];
+        private char[,] player1BattleshipPlayfield = new char[ROW_NUM, COL_NUM];
         private Grid player1PlayfieldGrid;
 
         public ShipPlacement(string player1Name)
@@ -441,14 +441,7 @@ namespace Battleship
 
             playfield.Children.Clear();
 
-            //TODO: újra inicalizálás?
-            for (int row = 0; row < ROW_NUM; row++)
-            {
-                for (int col = 0; col < COL_NUM; col++)
-                {
-                    battleshipPlayfield[row, col] = '\0';
-                }
-            }
+            battleshipPlayfield = new char[ROW_NUM, COL_NUM];
         }
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
