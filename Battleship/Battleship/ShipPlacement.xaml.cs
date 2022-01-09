@@ -560,7 +560,7 @@ namespace Battleship
                 if (player2PlaceShips)
                 {
                     //player vs player game start
-                    PvPGameWindow game2PlayerWindow = new();
+                    PvPGameWindow game2PlayerWindow = new(player1Name, player1PlayfieldGrid, player1BattleshipPlayfield, player2Name, playfield, battleshipPlayfield);
                     Close();
                     game2PlayerWindow.Show();
                 }
