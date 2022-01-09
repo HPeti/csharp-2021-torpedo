@@ -9,7 +9,7 @@
         Title="ShipPlacement" Height="700" Width="800">
 
     <Window.Background>
-        <ImageBrush ImageSource="/resources/battleship.jpg" Stretch="UniformToFill" Opacity="0.5"/>
+        <ImageBrush ImageSource="/resources/battleship.jpg" Stretch="UniformToFill"/>
     </Window.Background>
     
     <Grid>
