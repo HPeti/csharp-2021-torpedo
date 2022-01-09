@@ -458,6 +458,10 @@ namespace Battleship
                 if (player2PlaceShips)
                 {
                     //player vs player game start
+                    PvPGameWindow game2PlayerWindow = new();
+                    Close();
+                    game2PlayerWindow.Show();
+                    
                 }
                 else if (vsComputer)
                 {
@@ -470,8 +474,7 @@ namespace Battleship
                 {
                     //second player's ship placement
                     ShipPlacement player2ShipPlacementWindow = new(player1Name, player2Name, playfield, battleshipPlayfield);
-                    App.Current.MainWindow = player2ShipPlacementWindow;
-                    this.Close();
+                    Close();
                     player2ShipPlacementWindow.Show();
                 }
             }
