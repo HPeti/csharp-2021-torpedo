@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -24,13 +23,13 @@ namespace Battleship
         private bool shipShadow = false;
         private bool shipHorizontal = false;
 
-        private char[,] battleshipPlayfield = new char[10, 10];
+        private char[,] battleshipPlayfield = new char[ROW_NUM, COL_NUM];
 
         private bool vsComputer;
         private bool player2PlaceShips = false;
         private string player1Name;
         private string player2Name;
-        private char[,] player1BattleshipPlayfield = new char[10, 10];
+        private char[,] player1BattleshipPlayfield = new char[ROW_NUM, COL_NUM];
         private Grid player1PlayfieldGrid;
 
         public ShipPlacement(string player1Name)
@@ -273,7 +272,7 @@ namespace Battleship
             return shadow;
         }
 
-        private int CalculateCell() 
+        private int CalculateCell()
         {
             var point = Mouse.GetPosition(playfield);
 
@@ -341,7 +340,117 @@ namespace Battleship
 
         private void RandomBtn_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: random generation of a playfield will be implemented here...
+            playfield.Children.Clear();
+
+            battleshipPlayfield = new char[ROW_NUM, COL_NUM];
+
+            carrierBtn.IsEnabled = false;
+            battleshipBtn.IsEnabled = false;
+            cruiserBtn.IsEnabled = false;
+            submarineBtn.IsEnabled = false;
+            destroyerBtn.IsEnabled = false;
+
+            Random rnd = new();
+
+            int randomOrient;
+
+            for (int i = 5; i > 0; i--)
+            {
+                bool empty = false;
+                int randomPosX;
+                int randomPosY;
+                randomOrient = rnd.Next(0, 2);
+                switch (randomOrient)
+                {
+                    case 0:
+                        {
+                            //horizontal generating
+                            randomPosX = rnd.Next(0, 10 - i + 1);
+                            randomPosY = rnd.Next(0, 10);
+
+                            while (empty == false)
+                            {
+                                if ((randomPosX != 0 && char.IsDigit(battleshipPlayfield[randomPosY, randomPosX - 1])) || ((randomPosX + i - 1) != 9 && char.IsDigit(battleshipPlayfield[randomPosY, randomPosX + i])))
+                                {
+                                    randomPosX = rnd.Next(0, 10 - i + 1);
+                                    randomPosY = rnd.Next(0, 10);
+                                }
+                                else
+                                {
+                                    for (int k = 0; k < i; k++)
+                                    {
+                                        if (char.IsDigit(battleshipPlayfield[randomPosY, randomPosX + k]) || (randomPosY != 0 && char.IsDigit(battleshipPlayfield[randomPosY - 1, randomPosX + k])) || (randomPosY != 9 && char.IsDigit(battleshipPlayfield[randomPosY + 1, randomPosX + k])))
+                                        {
+                                            randomPosX = rnd.Next(0, 10 - i + 1);
+                                            randomPosY = rnd.Next(0, 10);
+                                            break;
+                                        }
+                                        else if (k == (i - 1))
+                                        {
+                                            empty = true;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int col = 0; col < i; col++)
+                            {
+                                Rectangle ship = ShipSettings(i);
+
+                                Grid.SetRow(ship, randomPosY);
+                                Grid.SetColumn(ship, col + randomPosX);
+
+                                battleshipPlayfield[randomPosY, randomPosX + col] = Convert.ToChar(i.ToString());
+                                playfield.Children.Add(ship);
+                            }
+                            break;
+                        }
+                    case 1:
+                        {
+                            //vertical generating
+                            randomPosY = rnd.Next(0, 10 - i + 1);
+                            randomPosX = rnd.Next(0, 10);
+
+                            while (empty == false)
+                            {
+                                if ((randomPosY != 0 && char.IsDigit(battleshipPlayfield[randomPosY - 1, randomPosX])) || ((randomPosY + i - 1) != 9 && char.IsDigit(battleshipPlayfield[randomPosY + i, randomPosX])))
+                                {
+                                    randomPosY = rnd.Next(0, 10 - i + 1);
+                                    randomPosX = rnd.Next(0, 10);
+                                }
+                                else
+                                {
+                                    for (int k = 0; k < i; k++)
+                                    {
+                                        if (char.IsDigit(battleshipPlayfield[randomPosY + k, randomPosX]) || (randomPosX != 0 && char.IsDigit(battleshipPlayfield[randomPosY + k, randomPosX - 1])) || (randomPosX != 9 && char.IsDigit(battleshipPlayfield[randomPosY + k, randomPosX + 1])))
+                                        {
+                                            randomPosY = rnd.Next(0, 10 - i + 1);
+                                            randomPosX = rnd.Next(0, 10);
+                                            break;
+                                        }
+                                        else if (k == (i - 1))
+                                        {
+                                            empty = true;
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int row = 0; row < i; row++)
+                            {
+                                Rectangle ship = ShipSettings(i);
+
+                                Grid.SetRow(ship, row + randomPosY);
+                                Grid.SetColumn(ship, randomPosX);
+
+                                battleshipPlayfield[randomPosY + row, randomPosX] = Convert.ToChar(i.ToString());
+                                playfield.Children.Add(ship);
+                            }
+
+                            break;
+                        }
+                }
+            }
         }
 
         private Rectangle ShipSettings(int shipLength)
@@ -350,8 +459,8 @@ namespace Battleship
             {
                 Fill = shipFillBrush
             };
-            var Y = playfield.Width / ROW_NUM;
-            var X = playfield.Height / COL_NUM;
+            double Y = playfield.Width / ROW_NUM;
+            double X = playfield.Height / COL_NUM;
             ship.Width = Y;
             ship.Height = X;
 
@@ -388,7 +497,7 @@ namespace Battleship
 
         private void ShipBtn(object sender, RoutedEventArgs e)
         {
-            var ShipButton = (Button)sender;
+            Button ShipButton = (Button)sender;
             selectedShip = ShipButton.Content.ToString();
 
             switch (selectedShip)
@@ -441,14 +550,7 @@ namespace Battleship
 
             playfield.Children.Clear();
 
-            //TODO: újra inicalizálás?
-            for (int row = 0; row < ROW_NUM; row++)
-            {
-                for (int col = 0; col < COL_NUM; col++)
-                {
-                    battleshipPlayfield[row, col] = '\0';
-                }
-            }
+            battleshipPlayfield = new char[ROW_NUM, COL_NUM];
         }
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
@@ -458,20 +560,22 @@ namespace Battleship
                 if (player2PlaceShips)
                 {
                     //player vs player game start
+                    PvPGameWindow game2PlayerWindow = new();
+                    Close();
+                    game2PlayerWindow.Show();
                 }
                 else if (vsComputer)
                 {
                     //player vs computer game start
-                    GameWindow gameWindow = new(player1Name);
-                    this.Close();
+                    GameWindow gameWindow = new(player1Name, playfield, battleshipPlayfield);
+                    Close();
                     gameWindow.Show();
                 }
                 else if (!vsComputer)
                 {
                     //second player's ship placement
                     ShipPlacement player2ShipPlacementWindow = new(player1Name, player2Name, playfield, battleshipPlayfield);
-                    App.Current.MainWindow = player2ShipPlacementWindow;
-                    this.Close();
+                    Close();
                     player2ShipPlacementWindow.Show();
                 }
             }
