@@ -114,8 +114,8 @@
                             <ColumnDefinition Width="4*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0" Width="250px" Height="50px" BorderThickness="2" BorderBrush="Black"  >
-                            <Grid ShowGridLines="True" Name="carrierHpGrid" >
+                        <Border Grid.Column="0" Width="250px" Height="50px" BorderThickness="2" BorderBrush="Black" CornerRadius="50,25,25,50"  >
+                            <Grid ShowGridLines="True" Name="carrierHpGrid" Height="46" VerticalAlignment="Top" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
@@ -127,7 +127,7 @@
                             
                         </Border>
 
-                        <Border Grid.Column="1" Width="200px" Height="50px" BorderThickness="2" BorderBrush="Black" >
+                        <Border Grid.Column="1" Width="200px" Height="50px" BorderThickness="2" BorderBrush="Black" CornerRadius="50,25,25,50">
                             <Grid ShowGridLines="True" Name="battleshipHpGrid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -146,7 +146,7 @@
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0" Width="150px" Height="50px" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Right" >
+                        <Border Grid.Column="0" Width="150px" Height="50px" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Right" CornerRadius="50,25,25,50">
                             <Grid ShowGridLines="True" Name="cruiserHpGrid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -156,7 +156,7 @@
                             </Grid>
                         </Border>
 
-                        <Border Grid.Column="1" Width="100px" Height="50px" BorderThickness="2" BorderBrush="Black" >
+                        <Border Grid.Column="1" Width="100px" Height="50px" BorderThickness="2" BorderBrush="Black" CornerRadius="50,25,25,50">
                             <Grid ShowGridLines="True" Name="submarineHpGrid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -165,7 +165,7 @@
                             </Grid>
                         </Border>
 
-                        <Border Grid.Column="2" Width="50px" Height="50px" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Left" >
+                        <Border Grid.Column="2" Width="50px" Height="50px" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Left" CornerRadius="50,10,10,50">
                             <Grid ShowGridLines="True" Name="destroyerHpGrid" HorizontalAlignment="Left" Width="46">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
