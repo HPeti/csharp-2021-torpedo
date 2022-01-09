@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -273,7 +272,7 @@ namespace Battleship
             return shadow;
         }
 
-        private int CalculateCell() 
+        private int CalculateCell()
         {
             var point = Mouse.GetPosition(playfield);
 
@@ -350,8 +349,8 @@ namespace Battleship
             {
                 Fill = shipFillBrush
             };
-            var Y = playfield.Width / ROW_NUM;
-            var X = playfield.Height / COL_NUM;
+            double Y = playfield.Width / ROW_NUM;
+            double X = playfield.Height / COL_NUM;
             ship.Width = Y;
             ship.Height = X;
 
@@ -388,7 +387,7 @@ namespace Battleship
 
         private void ShipBtn(object sender, RoutedEventArgs e)
         {
-            var ShipButton = (Button)sender;
+            Button ShipButton = (Button)sender;
             selectedShip = ShipButton.Content.ToString();
 
             switch (selectedShip)
@@ -454,7 +453,6 @@ namespace Battleship
                     PvPGameWindow game2PlayerWindow = new();
                     Close();
                     game2PlayerWindow.Show();
-                    
                 }
                 else if (vsComputer)
                 {
