@@ -20,7 +20,7 @@ namespace Battleship
         /// <returns>Returns true if the cell contains 'S' (shooted) or 'H' (hit) characters.</returns>
         public static bool IsShootedCell(int x, int y, char[,] table)
         {
-            return table[x, y] is 'S' or 'H';
+            return table[x, y] is 'H' or 'M';
         }
 
         /// <summary>

@@ -38,6 +38,7 @@ namespace Battleship
             _playerTable = playerTable;
             LoadPlayerTable(playfield);
             AI.GenerateAItable(rnd, _aiTable, rightTable);
+            SharedUtility.ShipStatHpInit(carrierHpGrid, battleshipHpGrid, cruiserHpGrid, submarineHpGrid, destroyerHpGrid);
         }
 
         private void LoadPlayerTable(Grid playfield)

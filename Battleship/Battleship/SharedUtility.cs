@@ -92,10 +92,12 @@ namespace Battleship
 
         public static Rectangle ShipHpSettings(int shipLength, Grid carrierHpGrid)
         {
-            Rectangle hpUnit = new Rectangle();
-            hpUnit.Fill = Brushes.Green;
-            hpUnit.RadiusX = 2;
-            hpUnit.RadiusY = 2;
+            Rectangle hpUnit = new()
+            {
+                Fill = Brushes.Green,
+                RadiusX = 2,
+                RadiusY = 2
+            };
             double Y = carrierHpGrid.Width;
             double X = carrierHpGrid.Height / shipLength;
             hpUnit.Width = Y;
