@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -24,7 +25,10 @@ namespace Battleship
         Random rnd = new();
         private bool shipVisibility;
         private int calculatedCell = -1;
-        private bool shadowExists = false;
+        private bool shadowExists;
+        private bool player1Coming;
+        public delegate string Hit(int cell);
+        public event Hit OnHit;
 
         public GameWindow(string player1, Grid playfield, char[,] playerTable)
         {
@@ -36,9 +40,12 @@ namespace Battleship
             _player1Hits = 0;
             _player2Hits = 0;
             _playerTable = playerTable;
+            player1Coming = SharedUtility.WhichPlayerStart();
             LoadPlayerTable(playfield);
             AI.GenerateAItable(rnd, _aiTable, rightTable);
             SharedUtility.ShipStatHpInit(carrierHpGrid, battleshipHpGrid, cruiserHpGrid, submarineHpGrid, destroyerHpGrid);
+
+            OnHit += new Hit(this.OnShoot);
         }
 
         private void LoadPlayerTable(Grid playfield)
@@ -73,6 +80,30 @@ namespace Battleship
                 int lastItem = rightTable.Children.Count - 1;
                 rightTable.Children.RemoveAt(lastItem);
             }
+        }
+
+        private bool IsHitShipUnit(int cell)
+        {
+            return char.IsDigit(_aiTable[cell / SharedUtility.ROWS, cell % SharedUtility.COLUMNS]);
+        }
+
+        public string OnShoot(int cell)
+        {
+            bool isHit = IsHitShipUnit(cell);
+
+            SharedUtility.SetShipUnit(cell, isHit, true, leftTable, rightTable);
+
+            if (isHit)
+            {
+                //HitsLabelChange();
+                return _aiTable[cell / SharedUtility.ROWS, cell % SharedUtility.COLUMNS].ToString();
+            }
+
+            player1Coming = !player1Coming;
+            //RoundsLabelChange();
+            //WhichPlayerComingLabelChange();
+
+            return "false";
         }
 
         private void OnGridMouseOver(object sender, MouseEventArgs e)
@@ -119,7 +150,55 @@ namespace Battleship
 
         private void OnGridMouseClick(object sender, MouseButtonEventArgs e)
         {
+            if (e.ClickCount == 1)
+            {
+                int shipLength = 1;
+                DeleteShadow();
+                shadowExists = false;
 
+                int cell = SharedUtility.CalculateCell(rightTable);
+
+                for (int i = 0; i < shipLength; i++)
+                {
+                    if (char.IsDigit(_aiTable[cell % SharedUtility.COLUMNS, cell / SharedUtility.ROWS]))
+                    {
+                        Rectangle ship = AI.CreateShip(rightTable);
+                        ship.Fill = Brushes.DarkRed;
+                        Grid.SetRow(ship, cell / SharedUtility.ROWS);
+                        Grid.SetColumn(ship, cell % SharedUtility.COLUMNS);
+
+                        char c = _aiTable[cell % SharedUtility.COLUMNS, cell / SharedUtility.ROWS];
+
+                        _aiTable[cell % SharedUtility.COLUMNS, cell / SharedUtility.ROWS] = 'H';
+
+                        string shipUnitName = OnHit(cell);
+                        SharedUtility.ShipHpDecrement(shipUnitName, carrierHpGrid, battleshipHpGrid, cruiserHpGrid, submarineHpGrid, destroyerHpGrid);
+
+                        ship.Visibility = Visibility.Visible;
+                        rightTable.Children.Add(ship);
+
+                        //playerHits++;
+                        //playerHitsLabel.Content = playerHits;
+                    }
+                    else if (_aiTable[cell % SharedUtility.COLUMNS, cell / SharedUtility.ROWS] is not ('H' or 'M'))
+                    {
+                        Rectangle ship = AI.CreateShip(rightTable);
+                        ship.Fill = Brushes.Gray;
+                        Grid.SetRow(ship, cell / SharedUtility.ROWS);
+                        Grid.SetColumn(ship, cell % SharedUtility.COLUMNS);
+
+                        _aiTable[cell % SharedUtility.COLUMNS, cell / SharedUtility.ROWS] = 'M';
+
+                        ship.Visibility = Visibility.Visible;
+                        rightTable.Children.Add(ship);
+
+                        //roundsLabelIncrement();
+
+                        //Random rnd = new Random();
+                        //game(rnd);
+                    }
+                }
+            }
         }
     }
 }

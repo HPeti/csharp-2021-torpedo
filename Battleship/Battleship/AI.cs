@@ -67,7 +67,7 @@ namespace Battleship
             return x is < 0 or > 9 || y is < 0 or > 9;
         }
 
-        public static Rectangle CreateShip(int shipSize, Grid playfield)
+        public static Rectangle CreateShip(Grid playfield)
         {
             Rectangle ship = new()
             {
@@ -129,7 +129,7 @@ namespace Battleship
 
                     for (int row = 0; row < i; row++)
                     {
-                        Rectangle ship = CreateShip(i, playfield);
+                        Rectangle ship = CreateShip(playfield);
 
                         Grid.SetColumn(ship, row + randomY);
                         Grid.SetRow(ship, randomX);
@@ -171,7 +171,7 @@ namespace Battleship
 
                     for (int col = 0; col < i; col++)
                     {
-                        Rectangle ship = CreateShip(i, playfield);
+                        Rectangle ship = CreateShip(playfield);
 
                         Grid.SetColumn(ship, randomY);
                         Grid.SetRow(ship, col + randomX);
@@ -182,5 +182,7 @@ namespace Battleship
                 }
             }
         }
+
+
     }
 }
