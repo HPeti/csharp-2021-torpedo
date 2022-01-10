@@ -27,6 +27,7 @@ namespace Battleship
         private int calculatedCell = -1;
         private bool shadowExists;
         private bool player1Coming;
+        private int playerChangeCounter = 0;
         public delegate string Hit(int cell);
         public event Hit OnHit;
 
@@ -95,15 +96,26 @@ namespace Battleship
 
             if (isHit)
             {
-                //HitsLabelChange();
+                HitsLabelChange();
                 return _aiTable[cell / SharedUtility.ROWS, cell % SharedUtility.COLUMNS].ToString();
             }
 
             player1Coming = !player1Coming;
-            //RoundsLabelChange();
-            //WhichPlayerComingLabelChange();
+            SharedUtility.RoundsLabelChange(roundsLabel, ref playerChangeCounter);
 
             return "false";
+        }
+
+        private void HitsLabelChange()
+        {
+            if (player1Coming)
+            {
+                playerHitsLabel.Content = _player1Hits;
+            }
+            else
+            {
+                aiHitsLabel.Content = _player2Hits;
+            }
         }
 
         private void OnGridMouseOver(object sender, MouseEventArgs e)
@@ -177,8 +189,8 @@ namespace Battleship
                         ship.Visibility = Visibility.Visible;
                         rightTable.Children.Add(ship);
 
-                        //playerHits++;
-                        //playerHitsLabel.Content = playerHits;
+                        _player1Hits++;
+                        playerHitsLabel.Content = _player1Hits;
                     }
                     else if (_aiTable[cell % SharedUtility.COLUMNS, cell / SharedUtility.ROWS] is not ('H' or 'M'))
                     {
@@ -192,10 +204,9 @@ namespace Battleship
                         ship.Visibility = Visibility.Visible;
                         rightTable.Children.Add(ship);
 
-                        //roundsLabelIncrement();
+                        SharedUtility.RoundsLabelChange(roundsLabel, ref playerChangeCounter);
 
-                        //Random rnd = new Random();
-                        //game(rnd);
+                        //AI logic
                     }
                 }
             }

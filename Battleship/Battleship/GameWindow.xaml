@@ -209,8 +209,8 @@
                         <Label Grid.Column="0" Content="Player hits:" FontFamily="SimHei" FontWeight="Bold" FontSize="26px"/>
                         <Label Grid.Column="1" x:Name="playerHitsLabel" Content="0" FontFamily="SimHei" FontWeight="Bold" FontSize="26px" Margin="1,0,0,0"/>
 
-                        <Label Grid.Column="2" Content="Computer hits:" FontFamily="SimHei" FontWeight="Bold" FontSize="26px"/>
-                        <Label Grid.Column="3" x:Name="computerHitsLabel" Content="0" FontFamily="SimHei" FontWeight="Bold" FontSize="26px"/>
+                        <Label Grid.Column="2" Content="AI hits:" FontFamily="SimHei" FontWeight="Bold" FontSize="26px"/>
+                        <Label Grid.Column="3" x:Name="aiHitsLabel" Content="0" FontFamily="SimHei" FontWeight="Bold" FontSize="26px"/>
                     </Grid>
                     <Grid  Grid.Row="2">
                         <Grid.ColumnDefinitions>
