@@ -84,67 +84,14 @@ namespace Battleship
             Rectangle hpUnit = new()
             {
                 Fill = Brushes.Green,
-                RadiusX = 2,
-                RadiusY = 2
+                RadiusX = 5,
+                RadiusY = 5
             };
             double Y = carrierHpGrid.Width;
             double X = carrierHpGrid.Height / shipLength;
             hpUnit.Width = Y;
             hpUnit.Height = X;
             return hpUnit;
-        }
-
-        //nem kell ide
-        public static Rectangle ShipUnitSettings(bool isHit)
-        {
-            Rectangle unit = new();
-
-            if (isHit)
-            {
-                unit.Fill = Brushes.DarkRed;
-            }
-            else
-            {
-                unit.Fill = Brushes.LightGray;
-            }
-
-            double Y = unit.Width / ROWS;
-            double X = unit.Height / COLUMNS;
-            unit.Width = Y;
-            unit.Height = X;
-
-            return unit;
-        }
-
-        //nem kell ide
-        public static void SetShipUnit(int cell, bool isHit, bool setLeftTable, Grid leftTable, Grid rightTable)
-        {
-            Rectangle ship = ShipUnitSettings(isHit);
-
-            Grid.SetRow(ship, cell / ROWS);
-            Grid.SetColumn(ship, cell % COLUMNS);
-
-            if (setLeftTable)
-            {
-                leftTable.Children.Add(ship);
-            }
-            else
-            {
-                rightTable.Children.Add(ship);
-            }
-        }
-
-        //ez nem kell ide
-        public static void EveryShipDestroyed(string player1, string player2, int rounds, int player1Hits, int player2Hits)
-        {
-            if (player1Hits == 15)
-            {
-                EndGame(player1, player2, rounds, player1Hits, player2Hits, player1);
-            }
-            else if (player2Hits == 15)
-            {
-                EndGame(player1, player2, rounds, player1Hits, player2Hits, player2);
-            }
         }
 
         public static void RoundsLabelChange(Label roundsLabel, ref int playerChangeCounter, ref int rounds)
@@ -158,11 +105,6 @@ namespace Battleship
             }
         }
 
-        //ez nem kell ide
-        public static bool IsCellShooted(int cell,ref char[,] enemyPlayfield )
-        {
-            return enemyPlayfield[cell / ROWS, cell % COLUMNS] is 'H' or 'M';
-        }
 
         public static void ShipHpDecrement(string shipUnitName, Grid carrierHpGrid, Grid battleshipHpGrid, Grid cruiserHpGrid, Grid submarineHpGrid, Grid destroyerHpGrid)
         {
