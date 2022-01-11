@@ -218,7 +218,7 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Content="Surrend"  Width="200px" Height="60px" Margin="350,47,350,47" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" Click="SurrendButton_Click" x:Name="surrendButton" Grid.ColumnSpan="2"/>
+                        <Button Grid.Column="0" Content="Surrend"  Width="200px" Height="60px" Margin="320,40,320,40" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" Click="SurrendButton_Click" x:Name="surrendButton" Grid.ColumnSpan="2"/>
 
                     </Grid>
                 </Grid>
