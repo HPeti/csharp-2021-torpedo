@@ -12,10 +12,10 @@ namespace Battleship
     /// </summary>
     public static class SharedUtility
     {
-
-        private static Random rnd = new ();
+        private static Random rnd = new();
         public const int ROWS = 10;
         public const int COLUMNS = 10;
+
         /// <summary>
         /// Indicates the end of the current game.
         /// </summary>
@@ -27,11 +27,9 @@ namespace Battleship
         /// <param name="winner">The player's name, who won the game</param>
         public static void EndGame(string player1, string player2, int rounds, int player1Hits, int player2Hits, string winner)
         {
-            _ = MessageBox.Show("Congratulations! {0} won!", winner);
+            _ = MessageBox.Show("Game Over!");
             DbHelper.InsertToDb(player1, player2, rounds, player1Hits, player2Hits, winner);
         }
-
-
 
         public static bool WhichPlayerStart()
         {
@@ -96,9 +94,10 @@ namespace Battleship
             return hpUnit;
         }
 
+        //nem kell ide
         public static Rectangle ShipUnitSettings(bool isHit)
         {
-            Rectangle unit = new Rectangle();
+            Rectangle unit = new();
 
             if (isHit)
             {
@@ -117,7 +116,7 @@ namespace Battleship
             return unit;
         }
 
-
+        //nem kell ide
         public static void SetShipUnit(int cell, bool isHit, bool setLeftTable, Grid leftTable, Grid rightTable)
         {
             Rectangle ship = ShipUnitSettings(isHit);
@@ -135,7 +134,7 @@ namespace Battleship
             }
         }
 
-
+        //ez nem kell ide
         public static void EveryShipDestroyed(string player1, string player2, int rounds, int player1Hits, int player2Hits)
         {
             if (player1Hits == 15)
@@ -148,17 +147,18 @@ namespace Battleship
             }
         }
 
-
-        public static void RoundsLabelChange(Label roundsLabel,ref int playerChangeCounter)
+        public static void RoundsLabelChange(Label roundsLabel, ref int playerChangeCounter, ref int rounds)
         {
             playerChangeCounter++;
 
             if (playerChangeCounter % 2 == 0)
             {
-                roundsLabel.Content = Convert.ToInt32(roundsLabel.Content) + 1;
+                rounds++;
+                roundsLabel.Content = rounds;
             }
         }
 
+        //ez nem kell ide
         public static bool IsCellShooted(int cell,ref char[,] enemyPlayfield )
         {
             return enemyPlayfield[cell / ROWS, cell % COLUMNS] is 'H' or 'M';

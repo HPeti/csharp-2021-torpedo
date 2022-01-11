@@ -182,7 +182,5 @@ namespace Battleship
                 }
             }
         }
-
-
     }
 }

@@ -18,18 +18,17 @@ namespace Battleship
         private int _rounds;
         private int _player1Hits;
         private int _player2Hits;
-        private string _winner;
         private char[,] _aiTable = new char[10, 10];
         private char[,] _playerTable = new char[10, 10];
 
-        Random rnd = new();
+        private Random rnd = new();
         private bool shipVisibility;
         private int calculatedCell = -1;
         private bool shadowExists;
         private bool player1Coming;
-        private int playerChangeCounter = 0;
-        public delegate string Hit(int cell);
-        public event Hit OnHit;
+        private int playerChangeCounter;
+        private bool up, down, left, right, con, isHit;
+        private int randomX, randomY, firstX, firstY;
 
         public GameWindow(string player1, Grid playfield, char[,] playerTable)
         {
@@ -42,36 +41,44 @@ namespace Battleship
             _player2Hits = 0;
             _playerTable = playerTable;
             player1Coming = SharedUtility.WhichPlayerStart();
-            LoadPlayerTable(playfield);
+            SharedUtility.PlayerShipsLoad(playfield, leftTable);
             AI.GenerateAItable(rnd, _aiTable, rightTable);
             SharedUtility.ShipStatHpInit(carrierHpGrid, battleshipHpGrid, cruiserHpGrid, submarineHpGrid, destroyerHpGrid);
 
-            OnHit += new Hit(this.OnShoot);
-        }
-
-        private void LoadPlayerTable(Grid playfield)
-        {
-            for (int ship = playfield.Children.Count -1; ship >= 0; ship--)
+            if (!player1Coming)
             {
-                UIElement child = playfield.Children[ship];
-                playfield.Children.RemoveAt(ship);
-                leftTable.Children.Add(child);
+                Logic();
             }
         }
 
-        private Rectangle CreateShadow()
+        private Rectangle ShipSettings()
         {
-            Rectangle shadow = new Rectangle
+            Rectangle ship = new()
             {
-                Fill = Brushes.LightGray
+                Fill = Brushes.Green
             };
-            double X = rightTable.Height / SharedUtility.COLUMNS;
-            double Y = rightTable.Width / SharedUtility.ROWS;
 
-            shadow.Height = X;
-            shadow.Width = Y;
+            double x = rightTable.Height / SharedUtility.COLUMNS;
+            double y = rightTable.Width / SharedUtility.ROWS;
 
-            return shadow;
+            ship.Height = x;
+            ship.Width = y;
+
+            return ship;
+        }
+
+        private void AIHitsLabelChange()
+        {
+            _player2Hits++;
+            aiHitsLabel.Content = _player2Hits;
+        }
+
+        private void InitDirection()
+        {
+            up = false;
+            down = false;
+            left = false;
+            right = false;
         }
 
         private void DeleteShadow()
@@ -83,38 +90,227 @@ namespace Battleship
             }
         }
 
-        private bool IsHitShipUnit(int cell)
+        private void ShootedCellChange(int x, int y, bool isHit)
         {
-            return char.IsDigit(_aiTable[cell / SharedUtility.ROWS, cell % SharedUtility.COLUMNS]);
+            _playerTable[x, y] = isHit ? 'H' : 'M';
         }
 
-        public string OnShoot(int cell)
+        private void PaintMissCell(int x, int y)
         {
-            bool isHit = IsHitShipUnit(cell);
+            Rectangle ship = ShipSettings();
+            ship.Fill = Brushes.Gray;
+            Grid.SetRow(ship, x);
+            Grid.SetColumn(ship, y);
 
-            SharedUtility.SetShipUnit(cell, isHit, true, leftTable, rightTable);
+            leftTable.Children.Add(ship);
+        }
 
-            if (isHit)
+        private void PaintHitCell(int x, int y)
+        {
+            Rectangle ship = ShipSettings();
+            ship.Fill = Brushes.DarkRed;
+
+            Grid.SetRow(ship, x);
+            Grid.SetColumn(ship, y);
+
+            leftTable.Children.Add(ship);
+        }
+
+        private bool ShipDestroyed(bool up, bool down, bool left, bool right)
+        {
+            if (up && down && left && right)
             {
-                HitsLabelChange();
-                return _aiTable[cell / SharedUtility.ROWS, cell % SharedUtility.COLUMNS].ToString();
+                InitDirection();
+                con = false;
+
+                return true;
             }
 
-            player1Coming = !player1Coming;
-            SharedUtility.RoundsLabelChange(roundsLabel, ref playerChangeCounter);
-
-            return "false";
+            return false;
         }
 
-        private void HitsLabelChange()
+        private bool Shoot(int randomX, int randomY, string direction)
         {
-            if (player1Coming)
+            switch (direction)
             {
-                playerHitsLabel.Content = _player1Hits;
+                case "Up":
+                    randomY++;
+                    break;
+                case "Down":
+                    randomY--;
+                    break;
+                case "Left":
+                    randomX--;
+                    break;
+                case "Right":
+                    randomX++;
+                    break;
+                default:
+                    break;
+            }
+
+            if (!AI.DetectBorder(randomX, randomY))
+            {
+                if (!AI.IsShootedCell(randomX, randomY, _playerTable))
+                {
+                    if (AI.IsPlayerUnit(randomX, randomY, _playerTable))
+                    {
+                        //Debug.WriteLine("AI shooted at x:{0}, y:{1}", randomX, randomY);
+                        ShootedCellChange(randomX, randomY, true);
+                        PaintHitCell(randomX, randomY);
+
+                        return true;
+                    }
+                    else
+                    {
+                        //Debug.WriteLine("AI missed at x:{0}, y:{1}", randomX, randomY);
+                        ShootedCellChange(randomX, randomY, false);
+                        PaintMissCell(randomX, randomY);
+
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
-                aiHitsLabel.Content = _player2Hits;
+                return false;
+            }
+        }
+
+        private void Logic()
+        {
+            //player1Coming = false;
+            isHit = false;
+            while (!player1Coming)
+            {
+                if (!con)
+                {
+                    int cell = AI.GenerateShoot(rnd, _playerTable);
+                    randomY = cell / SharedUtility.COLUMNS;
+                    randomX = cell % SharedUtility.ROWS;
+
+                    isHit = Shoot(randomX, randomY, "center");
+
+                    if (isHit)
+                    {
+                        AIHitsLabelChange();
+                        firstX = randomX;
+                        firstY = randomY;
+                    }
+                }
+                else
+                {
+                    isHit = true;
+                }
+
+                while (isHit)
+                {
+                    con = true;
+
+                    int direction = rnd.Next(0, 4);
+
+                    switch (direction)
+                    {
+                        case 0:
+                            while (!up)
+                            {
+                                if (Shoot(randomX, randomY, "Up"))
+                                {
+                                    randomY++;
+                                    AIHitsLabelChange();
+                                    right = true;
+                                    left = true;
+                                }
+                                else
+                                {
+                                    randomY = firstY;
+                                    player1Coming = true;
+                                    isHit = false;
+                                    up = true;
+                                    SharedUtility.RoundsLabelChange(roundsLabel, ref playerChangeCounter, ref _rounds);
+                                }
+                            }
+                            break;
+                        case 1:
+                            while (!down)
+                            {
+                                if (Shoot(randomX, randomY, "Down"))
+                                {
+                                    randomY--;
+                                    right = true;
+                                    left = true;
+                                    AIHitsLabelChange();
+                                }
+                                else
+                                {
+                                    randomY = firstY;
+                                    player1Coming = true;
+                                    isHit = false;
+                                    down = true;
+                                    SharedUtility.RoundsLabelChange(roundsLabel, ref playerChangeCounter, ref _rounds);
+                                }
+                            }
+                            break;
+                        case 2:
+                            while (!left)
+                            {
+                                if (Shoot(randomX, randomY, "Left"))
+                                {
+                                    randomX--;
+                                    up = true;
+                                    down = true;
+                                    AIHitsLabelChange();
+                                }
+                                else
+                                {
+                                    randomX = firstX;
+                                    player1Coming = true;
+                                    isHit = false;
+                                    left = true;
+                                    SharedUtility.RoundsLabelChange(roundsLabel, ref playerChangeCounter, ref _rounds);
+                                }
+                            }
+                            break;
+                        case 3:
+                            while (!right)
+                            {
+                                if (Shoot(randomX, randomY, "Right"))
+                                {
+                                    randomX++;
+                                    up = true;
+                                    down = true;
+                                    AIHitsLabelChange();
+                                }
+                                else
+                                {
+                                    randomX = firstX;
+                                    player1Coming = true;
+                                    isHit = false;
+                                    right = true;
+                                    SharedUtility.RoundsLabelChange(roundsLabel, ref playerChangeCounter, ref _rounds);
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (ShipDestroyed(up, down, left, right))
+                    {
+                        con = false;
+                        break;
+                    }
+
+                }
+                if (!isHit)
+                {
+                    player1Coming = true;
+                }
+
             }
         }
 
@@ -128,7 +324,8 @@ namespace Battleship
 
                 DeleteShadow();
 
-                Rectangle shadow = CreateShadow();
+                Rectangle shadow = ShipSettings();
+                shadow.Fill = Brushes.Gray;
 
                 Grid.SetRow(shadow, cell / SharedUtility.ROWS);
                 Grid.SetColumn(shadow, cell % SharedUtility.COLUMNS);
@@ -183,14 +380,21 @@ namespace Battleship
 
                         _aiTable[cell % SharedUtility.COLUMNS, cell / SharedUtility.ROWS] = 'H';
 
-                        string shipUnitName = OnHit(cell);
-                        SharedUtility.ShipHpDecrement(shipUnitName, carrierHpGrid, battleshipHpGrid, cruiserHpGrid, submarineHpGrid, destroyerHpGrid);
+                        SharedUtility.ShipHpDecrement(c.ToString(), carrierHpGrid, battleshipHpGrid, cruiserHpGrid, submarineHpGrid, destroyerHpGrid);
 
                         ship.Visibility = Visibility.Visible;
                         rightTable.Children.Add(ship);
 
                         _player1Hits++;
                         playerHitsLabel.Content = _player1Hits;
+
+                        if (_player1Hits == 15)
+                        {
+                            SharedUtility.EndGame(_player1Name, _player2Name, _rounds, _player1Hits, _player2Hits, _player1Name);
+                            MainWindow main = new();
+                            Close();
+                            main.Show();
+                        }
                     }
                     else if (_aiTable[cell % SharedUtility.COLUMNS, cell / SharedUtility.ROWS] is not ('H' or 'M'))
                     {
@@ -204,9 +408,17 @@ namespace Battleship
                         ship.Visibility = Visibility.Visible;
                         rightTable.Children.Add(ship);
 
-                        SharedUtility.RoundsLabelChange(roundsLabel, ref playerChangeCounter);
+                        SharedUtility.RoundsLabelChange(roundsLabel, ref playerChangeCounter, ref _rounds);
+                        player1Coming = false;
+                        Logic();
 
-                        //AI logic
+                        if (_player2Hits == 15)
+                        {
+                            SharedUtility.EndGame(_player1Name, _player2Name, _rounds, _player1Hits, _player2Hits, _player2Name);
+                            MainWindow main = new();
+                            Close();
+                            main.Show();
+                        }
                     }
                 }
             }
