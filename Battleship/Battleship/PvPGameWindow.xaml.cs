@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -30,6 +31,7 @@ namespace Battleship
         private int player2Hits = 0;
 
         PvPGameWindow player2Window;
+        PvPGameWindow player1Window;
         Random rnd = new();
 
         public delegate string Hit(int cell); 
@@ -41,6 +43,7 @@ namespace Battleship
         public PvPGameWindow(string player1Name, Grid player1PlayfieldGrid, char[,] player1Playfield, string player2Name, Grid player2PlayfieldGrid, char[,] player2Playfield)
         {
             InitializeComponent();
+            player1Window = this;
             this.Title = player1Name;
             this.myPlayfield = player1Playfield;
 
@@ -49,9 +52,23 @@ namespace Battleship
             windowPlayer1 = true;
             string playerStart = WhichPlayerStart(player1Name, player2Name);
 
-            player2Window = new PvPGameWindow(player1Name, player2Name, player2PlayfieldGrid, player2Playfield, player1Coming);
+            player2Window = new PvPGameWindow(player1Name, player2Name, player2PlayfieldGrid, player2Playfield, player1Coming, player1Window);
             player2Window.Title = player2Name;
             player2Window.Show();
+            player1Window.Left = 0;
+            player1Window.Top = 0;
+            player2Window.Left = 0;
+            player2Window.Top = 0;
+            if (player1Coming)
+            {
+                player1Window.WindowState = WindowState.Normal;
+                player2Window.WindowState = WindowState.Minimized;
+            }
+            else
+            {
+                player2Window.WindowState = WindowState.Normal;
+                player1Window.WindowState = WindowState.Minimized;
+            }
 
             InitializeLabels(player1Name, player2Name, playerStart);
 
@@ -66,15 +83,17 @@ namespace Battleship
 
         }
 
-        public PvPGameWindow(string player1Name, string player2Name, Grid player2PlayfieldGrid, char[,] player2Playfield, bool player1Coming)
+        public PvPGameWindow(string player1Name, string player2Name, Grid player2PlayfieldGrid, char[,] player2Playfield, bool player1Coming, PvPGameWindow player1Window)
         {
             InitializeComponent();
-
+            this.player1Window = player1Window;
+            player2Window = this;
             windowPlayer1 = false;
             this.myPlayfield = player2Playfield;
             this.player1Coming = player1Coming;
             this.player1Name = player1Name;
             this.player2Name = player2Name;
+            
 
             SharedUtility.ShipStatHpInit(carrierHpGrid, battleshipHpGrid, cruiserHpGrid, submarineHpGrid, destroyerHpGrid);
             PlayerShipsLoad(player2PlayfieldGrid);
@@ -225,6 +244,18 @@ namespace Battleship
                             player1Coming = !player1Coming;
                             SharedUtility.RoundsLabelChange(roundsLabel, ref playerChangeCounter, ref rounds);
                             WhichPlayerComingLabelChange();
+                            if (player1Coming)
+                            {
+                                Thread.Sleep(500);
+                                player1Window.WindowState = WindowState.Normal;
+                                player2Window.WindowState = WindowState.Minimized;
+                            }
+                            else
+                            {
+                                Thread.Sleep(500);
+                                player2Window.WindowState = WindowState.Normal;
+                                player1Window.WindowState = WindowState.Minimized;
+                            }
                         }
                     }
                 }

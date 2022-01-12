@@ -84,8 +84,8 @@ namespace Battleship
             Rectangle hpUnit = new()
             {
                 Fill = Brushes.Green,
-                RadiusX = 5,
-                RadiusY = 5
+                RadiusX = 2,
+                RadiusY = 2
             };
             double Y = carrierHpGrid.Width;
             double X = carrierHpGrid.Height / shipLength;
