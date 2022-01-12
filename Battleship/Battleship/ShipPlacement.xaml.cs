@@ -12,8 +12,8 @@ namespace Battleship
     /// </summary>
     public partial class ShipPlacement : Window
     {
-        private const int ROW_NUM = 10;
-        private const int COL_NUM = 10;
+        private const int ROW_NUM = SharedUtility.ROWS;
+        private const int COL_NUM = SharedUtility.COLUMNS;
         private Brush shadowFillBrush = Brushes.LightBlue;
         private Brush shipFillBrush = Brushes.DarkBlue;
 
