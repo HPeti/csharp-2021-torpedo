@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -155,7 +154,6 @@ namespace Battleship
                 {
                     if (AI.IsPlayerUnit(randomX, randomY, _playerTable))
                     {
-                        //Debug.WriteLine("AI shooted at x:{0}, y:{1}", randomX, randomY);
                         ShootedCellChange(randomX, randomY, true);
                         PaintHitCell(randomX, randomY);
 
@@ -163,7 +161,6 @@ namespace Battleship
                     }
                     else
                     {
-                        //Debug.WriteLine("AI missed at x:{0}, y:{1}", randomX, randomY);
                         ShootedCellChange(randomX, randomY, false);
                         PaintMissCell(randomX, randomY);
 
