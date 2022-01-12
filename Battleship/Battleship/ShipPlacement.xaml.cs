@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -497,31 +498,39 @@ namespace Battleship
 
         private void ShipBtn(object sender, RoutedEventArgs e)
         {
-            Button ShipButton = (Button)sender;
-            selectedShip = ShipButton.Content.ToString();
-
-            switch (selectedShip)
+            if(selectedShip == null)
             {
-                case "Destroyer":
-                    selectedShipUnit = '1';
-                    break;
+                Button ShipButton = (Button)sender;
+                selectedShip = ShipButton.Content.ToString();
 
-                case "Submarine":
-                    selectedShipUnit = '2';
-                    break;
+                switch (selectedShip)
+                {
+                    case "Destroyer":
+                        selectedShipUnit = '1';
+                        break;
 
-                case "Cruiser":
-                    selectedShipUnit = '3';
-                    break;
+                    case "Submarine":
+                        selectedShipUnit = '2';
+                        break;
 
-                case "Battleship":
-                    selectedShipUnit = '4';
-                    break;
+                    case "Cruiser":
+                        selectedShipUnit = '3';
+                        break;
 
-                case "Carrier":
-                    selectedShipUnit = '5';
-                    break;
+                    case "Battleship":
+                        selectedShipUnit = '4';
+                        break;
+
+                    case "Carrier":
+                        selectedShipUnit = '5';
+                        break;
+                }
             }
+            else
+            {
+                MessageBox.Show("Please, put down the current ship before selecting an another ship.", "Warning: ship selection", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+           
         }
 
         private void RotateBtn_Click(object sender, RoutedEventArgs e)
