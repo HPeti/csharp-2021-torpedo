@@ -35,7 +35,7 @@
             <Button x:Name="cruiserBtn" Content="Cruiser" Click="ShipBtn" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" FontWeight="Bold" FontSize="25px" Background="Transparent" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
             <Button x:Name="battleshipBtn" Content="Battleship" Click="ShipBtn" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" FontWeight="Bold" FontSize="25px" Background="Transparent" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
             <Button x:Name="carrierBtn" Content="Carrier" Click="ShipBtn" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" FontWeight="Bold" FontSize="25px" Background="Transparent" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
-            <Button x:Name="Rotate" Content="Rotate" Click="RotateBtn_Click" Background="#FF5284C0" FontFamily="Segoe UI Semibold" FontWeight="Bold" FontSize="30" Foreground="White" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
+            <Button x:Name="Rotate" Content="Rotate" Click="RotateBtn_Click" Background="#FF38BBE2" FontFamily="Segoe UI Semibold" FontSize="30" FontWeight="Bold" Foreground="White" BorderBrush="Black" BorderThickness="2" Width="200px" Height="45px" Margin="10"/>
         </StackPanel>
 
         <TextBlock Grid.Row="1" Grid.Column="1" Text=" A   B   C   D   E   F   G   H   I   J" FontFamily="SimHei" FontWeight="Bold" FontSize="28px" Margin="0 0 0 430" TextWrapping="Wrap" Width="400" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
