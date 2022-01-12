@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Battleship"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="ShipPlacement" Height="700" Width="800">
+        Title="Battleship" Height="700" Width="800" Icon="/resources/icon.ico">
 
     <Window.Background>
         <ImageBrush ImageSource="/resources/battleship.jpg" Stretch="UniformToFill"/>

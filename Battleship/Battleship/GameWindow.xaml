@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Battleship"
         mc:Ignorable="d"
         KeyDown="ChangeShipVisibility_KeyDown"
-        Title="GameWindow" Height="1000" Width="1800">
+        Title="Battleship" Height="1000" Width="1800" Icon="/resources/icon.ico">
 
     <Window.Background>
         <ImageBrush ImageSource="/resources/battleship.jpg" Stretch="UniformToFill"/>
