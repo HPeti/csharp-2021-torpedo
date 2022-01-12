@@ -46,7 +46,6 @@ namespace Battleship
             }
         }
 
-
         public static void ShipStatHpInit(Grid carrierHpGrid, Grid battleshipHpGrid, Grid cruiserHpGrid, Grid submarineHpGrid, Grid destroyerHpGrid)
         {
             for (int ship = 5; ship > 0; ship--)
@@ -105,7 +104,6 @@ namespace Battleship
             }
         }
 
-
         public static void ShipHpDecrement(string shipUnitName, Grid carrierHpGrid, Grid battleshipHpGrid, Grid cruiserHpGrid, Grid submarineHpGrid, Grid destroyerHpGrid)
         {
             switch (shipUnitName)
@@ -130,7 +128,7 @@ namespace Battleship
             }
         }
 
-        public static int CalculateCell(Grid rightTable) //which cell the cursor is on
+        public static int CalculateCell(Grid rightTable)
         {
             Point point = Mouse.GetPosition(rightTable);
 
@@ -157,6 +155,5 @@ namespace Battleship
 
             return (row * 10) + col;
         }
-
     }
 }

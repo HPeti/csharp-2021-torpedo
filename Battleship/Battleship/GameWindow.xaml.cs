@@ -181,9 +181,8 @@ namespace Battleship
             }
         }
 
-        private void Logic()
+        public void Logic()
         {
-            //player1Coming = false;
             isHit = false;
             while (!player1Coming)
             {
@@ -310,7 +309,6 @@ namespace Battleship
                 {
                     player1Coming = true;
                 }
-
             }
         }
 
