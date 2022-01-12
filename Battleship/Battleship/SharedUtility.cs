@@ -31,11 +31,17 @@ namespace Battleship
             DbHelper.InsertToDb(player1, player2, rounds, player1Hits, player2Hits, winner);
         }
 
+        /// <summary>
+        /// Randomly selects the starter player
+        /// </summary>
         public static bool WhichPlayerStart()
         {
             return rnd.Next(0, 2) == 0;
         }
 
+        /// <summary>
+        /// Loads the player's ships to the table
+        /// </summary>
         public static void PlayerShipsLoad(Grid playfield, Grid table)
         {
             for (int unit = playfield.Children.Count - 1; unit >= 0; unit--)
@@ -46,6 +52,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// Initializes the HP of the ships and load them to the gameboard.
+        /// </summary>
         public static void ShipStatHpInit(Grid carrierHpGrid, Grid battleshipHpGrid, Grid cruiserHpGrid, Grid submarineHpGrid, Grid destroyerHpGrid)
         {
             for (int ship = 5; ship > 0; ship--)
@@ -78,6 +87,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// Creates a green HP unit
+        /// </summary>
         public static Rectangle ShipHpSettings(int shipLength, Grid carrierHpGrid)
         {
             Rectangle hpUnit = new()
@@ -93,6 +105,9 @@ namespace Battleship
             return hpUnit;
         }
 
+        /// <summary>
+        /// Changes the rounds label
+        /// </summary>
         public static void RoundsLabelChange(Label roundsLabel, ref int playerChangeCounter, ref int rounds)
         {
             playerChangeCounter++;
@@ -104,6 +119,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// Decreases the HP of the ships and updates the gameboard
+        /// </summary>
         public static void ShipHpDecrement(string shipUnitName, Grid carrierHpGrid, Grid battleshipHpGrid, Grid cruiserHpGrid, Grid submarineHpGrid, Grid destroyerHpGrid)
         {
             switch (shipUnitName)
@@ -128,6 +146,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// Returns which cell is the mouse on
+        /// </summary>
         public static int CalculateCell(Grid rightTable)
         {
             Point point = Mouse.GetPosition(rightTable);
