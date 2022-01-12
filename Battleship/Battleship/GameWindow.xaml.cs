@@ -50,6 +50,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// Creates ship with green background
+        /// </summary>
         private Rectangle ShipSettings()
         {
             Rectangle ship = new()
@@ -66,12 +69,18 @@ namespace Battleship
             return ship;
         }
 
+        /// <summary>
+        /// Changes the AI hits label and increment the variable
+        /// </summary>
         private void AIHitsLabelChange()
         {
             _player2Hits++;
             aiHitsLabel.Content = _player2Hits;
         }
 
+        /// <summary>
+        /// Initalizes the directions to false. Used in the AI Logic
+        /// </summary>
         private void InitDirection()
         {
             up = false;
@@ -80,6 +89,9 @@ namespace Battleship
             right = false;
         }
 
+        /// <summary>
+        /// Removes the sahdow which shown when the cursor is on a cell
+        /// </summary>
         private void DeleteShadow()
         {
             if (shadowExists)
@@ -89,11 +101,17 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// Returns whether the given cell is a hit. If it is, returns a 'H' (Hit), otherwise an 'M' (Miss)
+        /// </summary>
         private void ShootedCellChange(int x, int y, bool isHit)
         {
             _playerTable[x, y] = isHit ? 'H' : 'M';
         }
 
+        /// <summary>
+        /// Changes the color of the cell which was a Miss
+        /// </summary>
         private void PaintMissCell(int x, int y)
         {
             Rectangle ship = ShipSettings();
@@ -104,6 +122,9 @@ namespace Battleship
             leftTable.Children.Add(ship);
         }
 
+        /// <summary>
+        /// Changes the color of the cell which was a Hit
+        /// </summary>
         private void PaintHitCell(int x, int y)
         {
             Rectangle ship = ShipSettings();
@@ -115,6 +136,9 @@ namespace Battleship
             leftTable.Children.Add(ship);
         }
 
+        /// <summary>
+        /// Returns True if the ship was destroyed and initailizes the the directions and changes the "continue" variable to false. Otherwise returns false
+        /// </summary>
         private bool ShipDestroyed(bool up, bool down, bool left, bool right)
         {
             if (up && down && left && right)
@@ -128,6 +152,9 @@ namespace Battleship
             return false;
         }
 
+        /// <summary>
+        /// Shooting logic for the AI
+        /// </summary>
         private bool Shoot(int randomX, int randomY, string direction)
         {
             switch (direction)
@@ -178,9 +205,11 @@ namespace Battleship
             }
         }
 
-        private void Logic()
+        /// <summary>
+        /// Main AI Logic. Generates a shoot and if it hit one of the player's ships, it will start to shoot the cells next to it.
+        /// </summary>
+        public void Logic()
         {
-            //player1Coming = false;
             isHit = false;
             while (!player1Coming)
             {
@@ -307,7 +336,6 @@ namespace Battleship
                 {
                     player1Coming = true;
                 }
-
             }
         }
 
@@ -354,6 +382,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// Interaction logic with the gameboard
+        /// </summary>
         private void OnGridMouseClick(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount == 1)

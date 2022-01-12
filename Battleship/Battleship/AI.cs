@@ -67,6 +67,9 @@ namespace Battleship
             return x is < 0 or > 9 || y is < 0 or > 9;
         }
 
+        /// <summary>
+        /// Creates AI's Ship units
+        /// </summary>
         public static Rectangle CreateShip(Grid playfield)
         {
             Rectangle ship = new()
@@ -84,6 +87,9 @@ namespace Battleship
             return ship;
         }
 
+        /// <summary>
+        /// Randomly generates all the ships for the AI and put them to the table
+        /// </summary>
         public static void GenerateAItable(Random rnd, char[,] aiTable, Grid playfield)
         {
             int orient;

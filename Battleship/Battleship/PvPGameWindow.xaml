@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Battleship"
         mc:Ignorable="d"
-        Title="PvPGameWindow" Height="1000" Width="1800">
+        Title="Battleship" Height="1000" Width="1800" Icon="/resources/icon.ico">
     <Window.Background>
         <ImageBrush ImageSource="/resources/battleship.jpg" Stretch="UniformToFill"/>
     </Window.Background>

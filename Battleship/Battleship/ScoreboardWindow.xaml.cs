@@ -11,7 +11,6 @@ namespace Battleship
     {
         private List<Game> AllGames { get; set; }
 
-
         public ScoreboardWindow()
         {
             InitializeComponent();
