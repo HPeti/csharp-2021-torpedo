@@ -136,7 +136,6 @@ namespace Battleship
             }
         }
 
-
         public string OnShoot(int cell)
         {
             bool isHit = IsHitShipUnit(cell);
@@ -161,7 +160,6 @@ namespace Battleship
         {
             return char.IsDigit(myPlayfield[cell / rows, cell % columns]);
         }
-
 
         private void SetShipUnit(int cell, bool isHit, bool setLeftTable)
         {
@@ -261,7 +259,6 @@ namespace Battleship
                 }
             }
         }
-
 
         private void HitsLabelChange()
         {
